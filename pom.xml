@@ -1,0 +1,82 @@
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+    <modelVersion>4.0.0</modelVersion>
+    <modules>
+        <module>modules/shoes-dao</module>
+        <module>modules/shoes-common</module>
+        <module>modules/shoes-core</module>
+        <module>modules/shoes-web</module>
+        <module>modules/shoes-dao</module>
+        <module>modules/shoes-admin</module>
+    </modules>
+
+    <parent>
+        <groupId>com.shoes.scarecrow</groupId>
+        <artifactId>shoes-parent</artifactId>
+        <version>1.0-SNAPSHOT</version>
+        <relativePath>shoes-parent/pom.xml</relativePath>
+    </parent>
+
+    <groupId>com.shoes.scarecrow</groupId>
+    <artifactId>scarecrow</artifactId>
+    <packaging>pom</packaging>
+    <version>1.0-SNAPSHOT</version>
+    <name>scarecrow</name>
+    <url>http://maven.apache.org</url>
+
+    <profiles>
+        <profile>
+            <id>parent</id>
+            <activation>
+                <activeByDefault>true</activeByDefault>
+            </activation>
+            <modules>
+                <module>shoes-parent</module>
+            </modules>
+        </profile>
+        <profile>
+            <id>modules</id>
+            <activation>
+                <activeByDefault>true</activeByDefault>
+            </activation>
+            <modules>
+                <module>modules/shoes-common</module>
+                <module>modules/shoes-core</module>
+                <module>modules/shoes-dao</module>
+                <module>modules/shoes-web</module>
+                <module>modules/shoes-admin</module>
+            </modules>
+        </profile>
+        <profile>
+            <id>biz-common</id>
+            <modules>
+                <module>modules/shoes-common</module>
+            </modules>
+        </profile>
+        <profile>
+            <id>biz-core</id>
+            <!-- profile for Web module -->
+            <modules>
+                <module>modules/shoes-core</module>
+            </modules>
+        </profile>
+        <profile>
+            <id>biz-dao</id>
+            <modules>
+                <module>modules/shoes-dao</module>
+            </modules>
+        </profile>
+        <profile>
+            <id>biz-web</id>
+            <modules>
+                <module>modules/shoes-web</module>
+            </modules>
+        </profile>
+        <profile>
+            <id>biz-admin</id>
+            <modules>
+                <module>modules/shoes-admin</module>
+            </modules>
+        </profile>
+    </profiles>
+</project>
