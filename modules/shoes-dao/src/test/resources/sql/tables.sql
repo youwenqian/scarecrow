@@ -1,0 +1,26 @@
+CREATE TABLE `user` (
+  `id` bigint(20) NOT NULL AUTO_INCREMENT,
+  `user_name` varchar(20) COLLATE utf8mb4_bin DEFAULT NULL COMMENT '用户名称',
+  `nick_name` varchar(20) COLLATE utf8mb4_bin DEFAULT NULL COMMENT '昵称',
+  `birthday` date DEFAULT NULL COMMENT '出生日期',
+  `sex` tinyint(4) DEFAULT NULL COMMENT '1：男   2：女  0：默认',
+  `user_type` int(11) DEFAULT NULL COMMENT '0：管理员 1：商户',
+  `iden_id` int(11) DEFAULT NULL COMMENT '证件类型',
+  `iden_no` varchar(20) COLLATE utf8mb4_bin DEFAULT NULL COMMENT '证件号码',
+  `phone_no` varchar(15) COLLATE utf8mb4_bin DEFAULT NULL COMMENT '手机号码',
+  `address` varchar(200) COLLATE utf8mb4_bin DEFAULT NULL COMMENT '地址',
+  `stock_id` int(11) DEFAULT NULL COMMENT '进货性质',
+  `taobao_name` varchar(50) COLLATE utf8mb4_bin DEFAULT NULL COMMENT '淘宝名称',
+  `image_address` varchar(100) COLLATE utf8mb4_bin DEFAULT NULL,
+  `password` varchar(20) COLLATE utf8mb4_bin DEFAULT NULL COMMENT '密码',
+  `confirm_password` varchar(20) COLLATE utf8mb4_bin DEFAULT NULL COMMENT '交易密码',
+  `create_time` datetime DEFAULT NULL COMMENT '创建时间',
+  `update_time` datetime DEFAULT NULL COMMENT '更新时间',
+  `create_user` varchar(20) COLLATE utf8mb4_bin DEFAULT NULL COMMENT '创建人',
+  `update_user` varchar(20) COLLATE utf8mb4_bin DEFAULT NULL COMMENT '更新人',
+  `remark` varchar(255) COLLATE utf8mb4_bin DEFAULT NULL COMMENT '备注',
+  `yn` tinyint(4) DEFAULT NULL COMMENT '是否有效 0无效 1有效',
+  `status` int(11) DEFAULT NULL COMMENT '状态',
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_bin;
+
