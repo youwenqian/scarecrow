@@ -13,9 +13,10 @@ import org.springframework.web.bind.annotation.ResponseBody;
 public class UserController {
 
 
-    @RequestMapping("/test")
+    @RequestMapping("/","/test")
     @ResponseBody
     public String test(){
+        System.out.println("说不上爱就别说谎，就一点喜欢！");
         return "test";
     }
 
