@@ -14,18 +14,18 @@
         <listener-class>org.springframework.web.context.ContextLoaderListener</listener-class>
     </listener>
 
-    <listener>
+  <!--  <listener>
         <display-name>Log4jConfigListener</display-name>
         <listener-class>org.springframework.web.util.Log4jConfigListener</listener-class>
     </listener>
 
-    <!--===========================================================================
+    &lt;!&ndash;===========================================================================
     日志文件加载
-    ===============================================================================-->
-    <!--<context-param>-->
-    <!--<param-name>log4jConfigLocation</param-name>-->
-    <!--<param-value>classpath:log4j.properties</param-value>-->
-    <!--</context-param>-->
+    ===============================================================================&ndash;&gt;
+    <context-param>
+    <param-name>log4jConfigLocation</param-name>
+    <param-value>classpath:log4j.properties</param-value>
+    </context-param>-->
 
     <!--===========================================================================
     Note: This listener should be placed before ContextLoaderListener in {@code web.xml},
@@ -110,5 +110,8 @@
         <url-pattern>*.js</url-pattern>
         <url-pattern>*.ico</url-pattern>
     </servlet-mapping>
-
+    
+    <welcome-file-list>
+        <welcome-file>index.jsp</welcome-file>
+    </welcome-file-list>
 </web-app>

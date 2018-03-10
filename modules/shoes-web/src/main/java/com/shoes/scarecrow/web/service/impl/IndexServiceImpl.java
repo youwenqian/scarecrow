@@ -3,7 +3,6 @@ package com.shoes.scarecrow.web.service.impl;
 import com.shoes.scarecrow.web.dao.IndexDao;
 import com.shoes.scarecrow.web.service.IndexService;
 
-import org.apache.log4j.Logger;
 import org.springframework.stereotype.Service;
 
 import javax.annotation.Resource;
@@ -15,7 +14,6 @@ import javax.annotation.Resource;
  */
 @Service
 public class IndexServiceImpl implements IndexService {
-    private static Logger log = Logger.getLogger(IndexService.class);
     @Resource
     private IndexDao indexDao;
 

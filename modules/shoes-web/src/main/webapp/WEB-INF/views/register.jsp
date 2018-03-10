@@ -14,14 +14,14 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>shoes circle</title>
     <title>&nbsp;shoes circle&nbsp;</title>
-    <link rel="stylesheet" type="text/css" href="../js/login/css/normalize.css"/>
-    <link rel="stylesheet" type="text/css" href="../js/login/css/default.css">
-    <link rel="stylesheet" type="text/css" href="../js/login/css/styles.css">
+    <link rel="stylesheet" type="text/css" href="/statics/js/login/css/normalize.css"/>
+    <link rel="stylesheet" type="text/css" href="/statics/js/login/css/default.css">
+    <link rel="stylesheet" type="text/css" href="/statics/js/login/css/styles.css">
     <!--[if IE]>
-    <script src="js/html5shiv/html5shiv.min.js"></script>
+    <script src="/statics/js/html5shiv/html5shiv.min.js"></script>
     <![endif]-->
     <!-- layui -->
-    <link rel="stylesheet" href="../js/layui/css/layui.css" media="all">
+    <link rel="stylesheet" href="/statics/js/layui/css/layui.css" media="all">
 </head>
 <body>
 <div class="htmleaf-container">
@@ -96,8 +96,8 @@
     </div>
 </div>
 
-<script src="../js/jquery-1.9.1.min.js"></script>
-<script src="../js/layui/layui.js" charset="utf-8"></script>
-<script src="../js/custom/register.js"></script>
+<script src="/statics/js/jquery-1.9.1.min.js"></script>
+<script src="/statics/js/layui/layui.js" charset="utf-8"></script>
+<script src="/statics/js/custom/register.js"></script>
 </body>
 </html>

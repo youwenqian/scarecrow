@@ -14,14 +14,14 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>shoes circle</title>
     <title>&nbsp;shoes circle&nbsp;</title>
-    <link rel="stylesheet" type="text/css" href="js/login/css/normalize.css" />
-    <link rel="stylesheet" type="text/css" href="js/login/css/default.css">
-    <link rel="stylesheet" type="text/css" href="js/login/css/styles.css">
+    <link rel="stylesheet" type="text/css" href="/statics/js/login/css/normalize.css" />
+    <link rel="stylesheet" type="text/css" href="/statics/js/login/css/default.css">
+    <link rel="stylesheet" type="text/css" href="/statics/js/login/css/styles.css">
     <!--[if IE]>
     <script src="js/html5shiv/html5shiv.min.js"></script>
     <![endif]-->
     <!-- layui -->
-    <link rel="stylesheet" href="js/layui/css/layui.css"  media="all">
+    <link rel="stylesheet" href="/statics/js/layui/css/layui.css"  media="all">
 </head>
 <body>
 黄梓雨

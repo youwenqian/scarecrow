@@ -1,8 +1,9 @@
 package com.shoes.scarecrow.web.controller;
 
 import com.shoes.scarecrow.web.service.IndexService;
-import org.apache.log4j.Logger;
 import org.codehaus.jackson.map.ObjectMapper;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 
@@ -21,7 +22,7 @@ import java.util.Map;
 @Controller
 @RequestMapping("/index")
 public class IndexController {
-    private static Logger log = Logger.getLogger(IndexController.class);
+    private static Logger log = LoggerFactory.getLogger(IndexController.class);
     @Resource
     private IndexService indexService;
     @RequestMapping("/login")
@@ -41,10 +42,6 @@ public class IndexController {
         }
 //        boolean checkUserFlag = indexService.login(userName,passWord);
 //        return "true";//+checkUserFlag;
-    }
-    @RequestMapping("/main")
-    public String main(){
-        return "main";
     }
     @RequestMapping("/register")
     public String register(){
