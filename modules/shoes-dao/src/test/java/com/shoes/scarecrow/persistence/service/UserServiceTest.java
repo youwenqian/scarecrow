@@ -22,8 +22,6 @@ public class UserServiceTest extends BaseTest{
         user.setBirthday(new Date());
         int count = userService.saveUser(user);
         System.out.println("数量count:"+ count);
-
-
     }
 
 }

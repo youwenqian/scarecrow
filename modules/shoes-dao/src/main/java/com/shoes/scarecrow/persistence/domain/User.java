@@ -11,7 +11,9 @@ public class User {
 
     private Date birthday;
 
-    private Byte sex;
+    private Integer isPayment;
+
+    private Integer sex;
 
     private Integer userType;
 
@@ -43,7 +45,7 @@ public class User {
 
     private String remark;
 
-    private Byte yn;
+    private Integer yn;
 
     private Integer status;
 
@@ -79,11 +81,19 @@ public class User {
         this.birthday = birthday;
     }
 
-    public Byte getSex() {
+    public Integer getIsPayment() {
+        return isPayment;
+    }
+
+    public void setIsPayment(Integer isPayment) {
+        this.isPayment = isPayment;
+    }
+
+    public Integer getSex() {
         return sex;
     }
 
-    public void setSex(Byte sex) {
+    public void setSex(Integer sex) {
         this.sex = sex;
     }
 
@@ -207,11 +217,11 @@ public class User {
         this.remark = remark == null ? null : remark.trim();
     }
 
-    public Byte getYn() {
+    public Integer getYn() {
         return yn;
     }
 
-    public void setYn(Byte yn) {
+    public void setYn(Integer yn) {
         this.yn = yn;
     }
 
