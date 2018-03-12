@@ -7,11 +7,17 @@ public class StockFlow {
 
     private Integer userId;
 
-    private Integer goodsId;
-
     private Integer stockId;
 
+    private Integer goodsId;
+
+    private Integer goodsExtendId;
+
     private String batchNo;
+
+    private String flowType;
+
+    private Long num;
 
     private Double price;
 
@@ -29,10 +35,6 @@ public class StockFlow {
 
     private String remark;
 
-    private Integer status;
-
-    private Integer yn;
-
     public Integer getId() {
         return id;
     }
@@ -49,14 +51,6 @@ public class StockFlow {
         this.userId = userId;
     }
 
-    public Integer getGoodsId() {
-        return goodsId;
-    }
-
-    public void setGoodsId(Integer goodsId) {
-        this.goodsId = goodsId;
-    }
-
     public Integer getStockId() {
         return stockId;
     }
@@ -65,12 +59,44 @@ public class StockFlow {
         this.stockId = stockId;
     }
 
+    public Integer getGoodsId() {
+        return goodsId;
+    }
+
+    public void setGoodsId(Integer goodsId) {
+        this.goodsId = goodsId;
+    }
+
+    public Integer getGoodsExtendId() {
+        return goodsExtendId;
+    }
+
+    public void setGoodsExtendId(Integer goodsExtendId) {
+        this.goodsExtendId = goodsExtendId;
+    }
+
     public String getBatchNo() {
         return batchNo;
     }
 
     public void setBatchNo(String batchNo) {
         this.batchNo = batchNo == null ? null : batchNo.trim();
+    }
+
+    public String getFlowType() {
+        return flowType;
+    }
+
+    public void setFlowType(String flowType) {
+        this.flowType = flowType == null ? null : flowType.trim();
+    }
+
+    public Long getNum() {
+        return num;
+    }
+
+    public void setNum(Long num) {
+        this.num = num;
     }
 
     public Double getPrice() {
@@ -135,21 +161,5 @@ public class StockFlow {
 
     public void setRemark(String remark) {
         this.remark = remark == null ? null : remark.trim();
-    }
-
-    public Integer getStatus() {
-        return status;
-    }
-
-    public void setStatus(Integer status) {
-        this.status = status;
-    }
-
-    public Integer getYn() {
-        return yn;
-    }
-
-    public void setYn(Integer yn) {
-        this.yn = yn;
     }
 }

@@ -20,7 +20,7 @@ public class BrankServiceTest extends BaseTest {
         Brank brank = new Brank();
         brank.setCreateTime(new Date());
         brank.setCreateUser("me");
-        brank.setName("品牌1");
+        brank.setName("品牌3");
         brank.setYn(0);
         int count = brankService.saveBrank(brank);
         System.out.println(count);

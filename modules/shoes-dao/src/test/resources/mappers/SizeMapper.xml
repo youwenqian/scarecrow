@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.shoes.scarecrow.persistence.mappers.SizeMapper">
+  <resultMap id="BaseResultMap" type="com.shoes.scarecrow.persistence.domain.Size">
+    <result column="id" jdbcType="INTEGER" property="id" />
+    <result column="size_name" jdbcType="VARCHAR" property="sizeName" />
+    <result column="desc" jdbcType="VARCHAR" property="desc" />
+  </resultMap>
+  <insert id="insert" parameterType="com.shoes.scarecrow.persistence.domain.Size">
+    insert into size (id, size_name, desc
+      )
+    values (#{id,jdbcType=INTEGER}, #{sizeName,jdbcType=VARCHAR}, #{desc,jdbcType=VARCHAR}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="com.shoes.scarecrow.persistence.domain.Size">
+    insert into size
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        id,
+      </if>
+      <if test="sizeName != null">
+        size_name,
+      </if>
+      <if test="desc != null">
+        desc,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        #{id,jdbcType=INTEGER},
+      </if>
+      <if test="sizeName != null">
+        #{sizeName,jdbcType=VARCHAR},
+      </if>
+      <if test="desc != null">
+        #{desc,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+</mapper>

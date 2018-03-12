@@ -20,8 +20,8 @@ public class GoodsServiceTest extends BaseTest {
     public void saveGoods() throws Exception {
         Goods  goods = new Goods();
         goods.setCreateTime(new Date());
-        goods.setCreateUser("me");
-        goods.setGoodsName("商品1");
+        goods.setCreateUser("swift");
+        goods.setGoodsName("商品3");
         goods.setYn(0);
         int count = goodsService.saveGoods(goods);
         System.out.println(count);

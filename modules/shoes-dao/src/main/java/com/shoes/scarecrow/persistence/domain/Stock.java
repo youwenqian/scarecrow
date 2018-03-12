@@ -11,13 +11,9 @@ public class Stock {
 
     private Integer goodsId;
 
-    private Integer color;
-
-    private Integer size;
+    private Integer goodsExtendId;
 
     private Double intoPrice;
-
-    private Double sharePrice;
 
     private Integer qty;
 
@@ -73,20 +69,12 @@ public class Stock {
         this.goodsId = goodsId;
     }
 
-    public Integer getColor() {
-        return color;
+    public Integer getGoodsExtendId() {
+        return goodsExtendId;
     }
 
-    public void setColor(Integer color) {
-        this.color = color;
-    }
-
-    public Integer getSize() {
-        return size;
-    }
-
-    public void setSize(Integer size) {
-        this.size = size;
+    public void setGoodsExtendId(Integer goodsExtendId) {
+        this.goodsExtendId = goodsExtendId;
     }
 
     public Double getIntoPrice() {
@@ -95,14 +83,6 @@ public class Stock {
 
     public void setIntoPrice(Double intoPrice) {
         this.intoPrice = intoPrice;
-    }
-
-    public Double getSharePrice() {
-        return sharePrice;
-    }
-
-    public void setSharePrice(Double sharePrice) {
-        this.sharePrice = sharePrice;
     }
 
     public Integer getQty() {

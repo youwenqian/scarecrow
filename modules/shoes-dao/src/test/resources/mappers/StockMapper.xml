@@ -6,10 +6,8 @@
     <result column="user_id" jdbcType="INTEGER" property="userId" />
     <result column="batch_no" jdbcType="VARCHAR" property="batchNo" />
     <result column="goods_id" jdbcType="INTEGER" property="goodsId" />
-    <result column="color" jdbcType="INTEGER" property="color" />
-    <result column="size" jdbcType="INTEGER" property="size" />
+    <result column="goods_extend_id" jdbcType="INTEGER" property="goodsExtendId" />
     <result column="into_price" jdbcType="DOUBLE" property="intoPrice" />
-    <result column="share_price" jdbcType="DOUBLE" property="sharePrice" />
     <result column="qty" jdbcType="INTEGER" property="qty" />
     <result column="storage_time" jdbcType="TIMESTAMP" property="storageTime" />
     <result column="share_flag" jdbcType="INTEGER" property="shareFlag" />
@@ -24,19 +22,17 @@
   </resultMap>
   <insert id="insert" parameterType="com.shoes.scarecrow.persistence.domain.Stock">
     insert into stock (id, user_id, batch_no, 
-      goods_id, color, size, 
-      into_price, share_price, qty, 
-      storage_time, share_flag, store_address, 
-      remark, create_time, create_user, 
-      update_time, update_user, status, 
-      yn)
+      goods_id, goods_extend_id, into_price, 
+      qty, storage_time, share_flag, 
+      store_address, remark, create_time, 
+      create_user, update_time, update_user, 
+      status, yn)
     values (#{id,jdbcType=INTEGER}, #{userId,jdbcType=INTEGER}, #{batchNo,jdbcType=VARCHAR}, 
-      #{goodsId,jdbcType=INTEGER}, #{color,jdbcType=INTEGER}, #{size,jdbcType=INTEGER}, 
-      #{intoPrice,jdbcType=DOUBLE}, #{sharePrice,jdbcType=DOUBLE}, #{qty,jdbcType=INTEGER}, 
-      #{storageTime,jdbcType=TIMESTAMP}, #{shareFlag,jdbcType=INTEGER}, #{storeAddress,jdbcType=VARCHAR}, 
-      #{remark,jdbcType=VARCHAR}, #{createTime,jdbcType=TIMESTAMP}, #{createUser,jdbcType=VARCHAR}, 
-      #{updateTime,jdbcType=TIMESTAMP}, #{updateUser,jdbcType=VARCHAR}, #{status,jdbcType=INTEGER}, 
-      #{yn,jdbcType=INTEGER})
+      #{goodsId,jdbcType=INTEGER}, #{goodsExtendId,jdbcType=INTEGER}, #{intoPrice,jdbcType=DOUBLE}, 
+      #{qty,jdbcType=INTEGER}, #{storageTime,jdbcType=TIMESTAMP}, #{shareFlag,jdbcType=INTEGER}, 
+      #{storeAddress,jdbcType=VARCHAR}, #{remark,jdbcType=VARCHAR}, #{createTime,jdbcType=TIMESTAMP}, 
+      #{createUser,jdbcType=VARCHAR}, #{updateTime,jdbcType=TIMESTAMP}, #{updateUser,jdbcType=VARCHAR}, 
+      #{status,jdbcType=INTEGER}, #{yn,jdbcType=INTEGER})
   </insert>
   <insert id="insertSelective" parameterType="com.shoes.scarecrow.persistence.domain.Stock">
     insert into stock
@@ -53,17 +49,11 @@
       <if test="goodsId != null">
         goods_id,
       </if>
-      <if test="color != null">
-        color,
-      </if>
-      <if test="size != null">
-        size,
+      <if test="goodsExtendId != null">
+        goods_extend_id,
       </if>
       <if test="intoPrice != null">
         into_price,
-      </if>
-      <if test="sharePrice != null">
-        share_price,
       </if>
       <if test="qty != null">
         qty,
@@ -112,17 +102,11 @@
       <if test="goodsId != null">
         #{goodsId,jdbcType=INTEGER},
       </if>
-      <if test="color != null">
-        #{color,jdbcType=INTEGER},
-      </if>
-      <if test="size != null">
-        #{size,jdbcType=INTEGER},
+      <if test="goodsExtendId != null">
+        #{goodsExtendId,jdbcType=INTEGER},
       </if>
       <if test="intoPrice != null">
         #{intoPrice,jdbcType=DOUBLE},
-      </if>
-      <if test="sharePrice != null">
-        #{sharePrice,jdbcType=DOUBLE},
       </if>
       <if test="qty != null">
         #{qty,jdbcType=INTEGER},

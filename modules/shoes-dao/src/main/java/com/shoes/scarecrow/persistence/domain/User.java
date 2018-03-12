@@ -13,13 +13,9 @@ public class User {
 
     private Integer isPayment;
 
-    private Integer sex;
+    private Byte sex;
 
     private Integer userType;
-
-    private Integer idenId;
-
-    private String idenNo;
 
     private String phoneNo;
 
@@ -45,7 +41,7 @@ public class User {
 
     private String remark;
 
-    private Integer yn;
+    private Byte yn;
 
     private Integer status;
 
@@ -89,11 +85,11 @@ public class User {
         this.isPayment = isPayment;
     }
 
-    public Integer getSex() {
+    public Byte getSex() {
         return sex;
     }
 
-    public void setSex(Integer sex) {
+    public void setSex(Byte sex) {
         this.sex = sex;
     }
 
@@ -103,22 +99,6 @@ public class User {
 
     public void setUserType(Integer userType) {
         this.userType = userType;
-    }
-
-    public Integer getIdenId() {
-        return idenId;
-    }
-
-    public void setIdenId(Integer idenId) {
-        this.idenId = idenId;
-    }
-
-    public String getIdenNo() {
-        return idenNo;
-    }
-
-    public void setIdenNo(String idenNo) {
-        this.idenNo = idenNo == null ? null : idenNo.trim();
     }
 
     public String getPhoneNo() {
@@ -217,11 +197,11 @@ public class User {
         this.remark = remark == null ? null : remark.trim();
     }
 
-    public Integer getYn() {
+    public Byte getYn() {
         return yn;
     }
 
-    public void setYn(Integer yn) {
+    public void setYn(Byte yn) {
         this.yn = yn;
     }
 

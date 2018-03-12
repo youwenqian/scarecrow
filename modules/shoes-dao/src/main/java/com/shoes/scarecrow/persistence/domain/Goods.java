@@ -7,6 +7,8 @@ public class Goods {
 
     private Integer userId;
 
+    private Double price;
+
     private String keyword;
 
     private Integer goodsClass;
@@ -49,6 +51,14 @@ public class Goods {
 
     public void setUserId(Integer userId) {
         this.userId = userId;
+    }
+
+    public Double getPrice() {
+        return price;
+    }
+
+    public void setPrice(Double price) {
+        this.price = price;
     }
 
     public String getKeyword() {
