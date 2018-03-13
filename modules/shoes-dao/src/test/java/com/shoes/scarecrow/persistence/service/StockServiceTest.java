@@ -23,6 +23,7 @@ public class StockServiceTest extends BaseTest {
         stock.setIntoPrice(1652.3333);
         int count = stockService.saveStock(stock);
         System.out.println(count);
+        System.out.println( stock.toString());
     }
 
 }

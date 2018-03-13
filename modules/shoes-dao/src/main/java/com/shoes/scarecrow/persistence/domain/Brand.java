@@ -5,26 +5,10 @@ import lombok.Data;
 import java.util.Date;
 
 @Data
-public class Stock {
+public class Brand {
     private Integer id;
 
-    private Integer userId;
-
-    private String batchNo;
-
-    private Integer goodsId;
-
-    private Integer goodsExtendId;
-
-    private Double intoPrice;
-
-    private Integer qty;
-
-    private Date storageTime;
-
-    private Integer shareFlag;
-
-    private String storeAddress;
+    private String name;
 
     private String remark;
 
@@ -39,5 +23,7 @@ public class Stock {
     private Integer status;
 
     private Integer yn;
+
+    private Integer version;
 
 }

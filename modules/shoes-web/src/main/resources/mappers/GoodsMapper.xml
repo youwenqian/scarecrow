@@ -1,0 +1,146 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.shoes.scarecrow.persistence.mappers.GoodsMapper">
+  <resultMap id="BaseResultMap" type="com.shoes.scarecrow.persistence.domain.Goods">
+    <result column="id" jdbcType="INTEGER" property="id" />
+    <result column="user_id" jdbcType="INTEGER" property="userId" />
+    <result column="price" jdbcType="DOUBLE" property="price" />
+    <result column="keyword" jdbcType="VARCHAR" property="keyword" />
+    <result column="goods_class" jdbcType="INTEGER" property="goodsClass" />
+    <result column="goods_name" jdbcType="VARCHAR" property="goodsName" />
+    <result column="goods_desc" jdbcType="VARCHAR" property="goodsDesc" />
+    <result column="remark" jdbcType="VARCHAR" property="remark" />
+    <result column="brand_id" jdbcType="INTEGER" property="brandId" />
+    <result column="sex" jdbcType="INTEGER" property="sex" />
+    <result column="create_time" jdbcType="TIMESTAMP" property="createTime" />
+    <result column="create_user" jdbcType="VARCHAR" property="createUser" />
+    <result column="update_time" jdbcType="TIMESTAMP" property="updateTime" />
+    <result column="update_user" jdbcType="VARCHAR" property="updateUser" />
+    <result column="status" jdbcType="INTEGER" property="status" />
+    <result column="yn" jdbcType="INTEGER" property="yn" />
+    <result column="version" jdbcType="INTEGER" property="version" />
+  </resultMap>
+  <insert id="insert" parameterType="com.shoes.scarecrow.persistence.domain.Goods">
+    insert into goods (id, user_id, price, 
+      keyword, goods_class, goods_name, 
+      goods_desc, remark, brand_id, 
+      sex, create_time, create_user, 
+      update_time, update_user, status, 
+      yn, version)
+    values (#{id,jdbcType=INTEGER}, #{userId,jdbcType=INTEGER}, #{price,jdbcType=DOUBLE}, 
+      #{keyword,jdbcType=VARCHAR}, #{goodsClass,jdbcType=INTEGER}, #{goodsName,jdbcType=VARCHAR}, 
+      #{goodsDesc,jdbcType=VARCHAR}, #{remark,jdbcType=VARCHAR}, #{brandId,jdbcType=INTEGER}, 
+      #{sex,jdbcType=INTEGER}, #{createTime,jdbcType=TIMESTAMP}, #{createUser,jdbcType=VARCHAR}, 
+      #{updateTime,jdbcType=TIMESTAMP}, #{updateUser,jdbcType=VARCHAR}, #{status,jdbcType=INTEGER}, 
+      #{yn,jdbcType=INTEGER}, #{version,jdbcType=INTEGER})
+  </insert>
+  <insert id="insertSelective" parameterType="com.shoes.scarecrow.persistence.domain.Goods">
+    insert into goods
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        id,
+      </if>
+      <if test="userId != null">
+        user_id,
+      </if>
+      <if test="price != null">
+        price,
+      </if>
+      <if test="keyword != null">
+        keyword,
+      </if>
+      <if test="goodsClass != null">
+        goods_class,
+      </if>
+      <if test="goodsName != null">
+        goods_name,
+      </if>
+      <if test="goodsDesc != null">
+        goods_desc,
+      </if>
+      <if test="remark != null">
+        remark,
+      </if>
+      <if test="brandId != null">
+        brand_id,
+      </if>
+      <if test="sex != null">
+        sex,
+      </if>
+      <if test="createTime != null">
+        create_time,
+      </if>
+      <if test="createUser != null">
+        create_user,
+      </if>
+      <if test="updateTime != null">
+        update_time,
+      </if>
+      <if test="updateUser != null">
+        update_user,
+      </if>
+      <if test="status != null">
+        status,
+      </if>
+      <if test="yn != null">
+        yn,
+      </if>
+      <if test="version != null">
+        version,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        #{id,jdbcType=INTEGER},
+      </if>
+      <if test="userId != null">
+        #{userId,jdbcType=INTEGER},
+      </if>
+      <if test="price != null">
+        #{price,jdbcType=DOUBLE},
+      </if>
+      <if test="keyword != null">
+        #{keyword,jdbcType=VARCHAR},
+      </if>
+      <if test="goodsClass != null">
+        #{goodsClass,jdbcType=INTEGER},
+      </if>
+      <if test="goodsName != null">
+        #{goodsName,jdbcType=VARCHAR},
+      </if>
+      <if test="goodsDesc != null">
+        #{goodsDesc,jdbcType=VARCHAR},
+      </if>
+      <if test="remark != null">
+        #{remark,jdbcType=VARCHAR},
+      </if>
+      <if test="brandId != null">
+        #{brandId,jdbcType=INTEGER},
+      </if>
+      <if test="sex != null">
+        #{sex,jdbcType=INTEGER},
+      </if>
+      <if test="createTime != null">
+        #{createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="createUser != null">
+        #{createUser,jdbcType=VARCHAR},
+      </if>
+      <if test="updateTime != null">
+        #{updateTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updateUser != null">
+        #{updateUser,jdbcType=VARCHAR},
+      </if>
+      <if test="status != null">
+        #{status,jdbcType=INTEGER},
+      </if>
+      <if test="yn != null">
+        #{yn,jdbcType=INTEGER},
+      </if>
+      <if test="version != null">
+        #{version,jdbcType=INTEGER},
+      </if>
+    </trim>
+  </insert>
+</mapper>

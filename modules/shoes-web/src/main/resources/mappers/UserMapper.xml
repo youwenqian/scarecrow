@@ -6,10 +6,9 @@
     <result column="user_name" jdbcType="VARCHAR" property="userName" />
     <result column="nick_name" jdbcType="VARCHAR" property="nickName" />
     <result column="birthday" jdbcType="DATE" property="birthday" />
+    <result column="is_payment" jdbcType="INTEGER" property="isPayment" />
     <result column="sex" jdbcType="TINYINT" property="sex" />
     <result column="user_type" jdbcType="INTEGER" property="userType" />
-    <result column="iden_id" jdbcType="INTEGER" property="idenId" />
-    <result column="iden_no" jdbcType="VARCHAR" property="idenNo" />
     <result column="phone_no" jdbcType="VARCHAR" property="phoneNo" />
     <result column="address" jdbcType="VARCHAR" property="address" />
     <result column="stock_id" jdbcType="INTEGER" property="stockId" />
@@ -27,21 +26,19 @@
   </resultMap>
   <insert id="insert" parameterType="com.shoes.scarecrow.persistence.domain.User">
     insert into user (id, user_name, nick_name, 
-      birthday, sex, user_type, 
-      iden_id, iden_no, phone_no, 
-      address, stock_id, taobao_name, 
-      image_address, password, confirm_password, 
-      create_time, update_time, create_user, 
-      update_user, remark, yn, 
-      status)
+      birthday, is_payment, sex, 
+      user_type, phone_no, address, 
+      stock_id, taobao_name, image_address, 
+      password, confirm_password, create_time, 
+      update_time, create_user, update_user, 
+      remark, yn, status)
     values (#{id,jdbcType=BIGINT}, #{userName,jdbcType=VARCHAR}, #{nickName,jdbcType=VARCHAR}, 
-      #{birthday,jdbcType=DATE}, #{sex,jdbcType=TINYINT}, #{userType,jdbcType=INTEGER}, 
-      #{idenId,jdbcType=INTEGER}, #{idenNo,jdbcType=VARCHAR}, #{phoneNo,jdbcType=VARCHAR}, 
-      #{address,jdbcType=VARCHAR}, #{stockId,jdbcType=INTEGER}, #{taobaoName,jdbcType=VARCHAR}, 
-      #{imageAddress,jdbcType=VARCHAR}, #{password,jdbcType=VARCHAR}, #{confirmPassword,jdbcType=VARCHAR}, 
-      #{createTime,jdbcType=TIMESTAMP}, #{updateTime,jdbcType=TIMESTAMP}, #{createUser,jdbcType=VARCHAR}, 
-      #{updateUser,jdbcType=VARCHAR}, #{remark,jdbcType=VARCHAR}, #{yn,jdbcType=TINYINT}, 
-      #{status,jdbcType=INTEGER})
+      #{birthday,jdbcType=DATE}, #{isPayment,jdbcType=INTEGER}, #{sex,jdbcType=TINYINT}, 
+      #{userType,jdbcType=INTEGER}, #{phoneNo,jdbcType=VARCHAR}, #{address,jdbcType=VARCHAR}, 
+      #{stockId,jdbcType=INTEGER}, #{taobaoName,jdbcType=VARCHAR}, #{imageAddress,jdbcType=VARCHAR}, 
+      #{password,jdbcType=VARCHAR}, #{confirmPassword,jdbcType=VARCHAR}, #{createTime,jdbcType=TIMESTAMP}, 
+      #{updateTime,jdbcType=TIMESTAMP}, #{createUser,jdbcType=VARCHAR}, #{updateUser,jdbcType=VARCHAR}, 
+      #{remark,jdbcType=VARCHAR}, #{yn,jdbcType=TINYINT}, #{status,jdbcType=INTEGER})
   </insert>
   <insert id="insertSelective" parameterType="com.shoes.scarecrow.persistence.domain.User">
     insert into user
@@ -58,17 +55,14 @@
       <if test="birthday != null">
         birthday,
       </if>
+      <if test="isPayment != null">
+        is_payment,
+      </if>
       <if test="sex != null">
         sex,
       </if>
       <if test="userType != null">
         user_type,
-      </if>
-      <if test="idenId != null">
-        iden_id,
-      </if>
-      <if test="idenNo != null">
-        iden_no,
       </if>
       <if test="phoneNo != null">
         phone_no,
@@ -126,17 +120,14 @@
       <if test="birthday != null">
         #{birthday,jdbcType=DATE},
       </if>
+      <if test="isPayment != null">
+        #{isPayment,jdbcType=INTEGER},
+      </if>
       <if test="sex != null">
         #{sex,jdbcType=TINYINT},
       </if>
       <if test="userType != null">
         #{userType,jdbcType=INTEGER},
-      </if>
-      <if test="idenId != null">
-        #{idenId,jdbcType=INTEGER},
-      </if>
-      <if test="idenNo != null">
-        #{idenNo,jdbcType=VARCHAR},
       </if>
       <if test="phoneNo != null">
         #{phoneNo,jdbcType=VARCHAR},
