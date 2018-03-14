@@ -20,8 +20,5 @@ public class BrandCondition extends BaseCondition implements Serializable{
 
     private String name;
 
-    private Date createTime;
-
-    private Date endTime;
 
 }

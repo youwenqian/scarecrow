@@ -4,6 +4,7 @@
   <resultMap id="BaseResultMap" type="com.shoes.scarecrow.persistence.domain.Goods">
     <result column="id" jdbcType="INTEGER" property="id" />
     <result column="user_id" jdbcType="INTEGER" property="userId" />
+    <result column="price" jdbcType="DOUBLE" property="price" />
     <result column="keyword" jdbcType="VARCHAR" property="keyword" />
     <result column="goods_class" jdbcType="INTEGER" property="goodsClass" />
     <result column="goods_name" jdbcType="VARCHAR" property="goodsName" />
@@ -19,14 +20,19 @@
     <result column="yn" jdbcType="INTEGER" property="yn" />
     <result column="version" jdbcType="INTEGER" property="version" />
   </resultMap>
+
+  <sql id="tableName">goods</sql>
+
+  <sql id="columns">id, user_id, price,keyword,
+    goods_class, goods_name, goods_desc,
+    remark, brand_id, sex,
+    create_time, create_user, update_time,
+    update_user, status, yn,
+    version</sql>
+
   <insert id="insert" parameterType="com.shoes.scarecrow.persistence.domain.Goods">
-    insert into goods (id, user_id, keyword, 
-      goods_class, goods_name, goods_desc, 
-      remark, brand_id, sex, 
-      create_time, create_user, update_time, 
-      update_user, status, yn, 
-      version)
-    values (#{id,jdbcType=INTEGER}, #{userId,jdbcType=INTEGER}, #{keyword,jdbcType=VARCHAR}, 
+    insert into <include refid="tableName" /> (<include refid="columns" />)
+    values (#{id,jdbcType=INTEGER}, #{userId,jdbcType=INTEGER},#{price,jdbcType=DOUBLE}, #{keyword,jdbcType=VARCHAR},
       #{goodsClass,jdbcType=INTEGER}, #{goodsName,jdbcType=VARCHAR}, #{goodsDesc,jdbcType=VARCHAR}, 
       #{remark,jdbcType=VARCHAR}, #{brandId,jdbcType=INTEGER}, #{sex,jdbcType=INTEGER}, 
       #{createTime,jdbcType=TIMESTAMP}, #{createUser,jdbcType=VARCHAR}, #{updateTime,jdbcType=TIMESTAMP}, 
@@ -34,7 +40,7 @@
       #{version,jdbcType=INTEGER})
   </insert>
   <insert id="insertSelective" parameterType="com.shoes.scarecrow.persistence.domain.Goods">
-    insert into goods
+    insert into <include refid="tableName" />
     <trim prefix="(" suffix=")" suffixOverrides=",">
       <if test="id != null">
         id,
@@ -136,4 +142,131 @@
       </if>
     </trim>
   </insert>
+
+  <select id="queryByCondition" parameterType="com.shoes.scarecrow.persistence.domain.GoodsCondition" resultType="com.shoes.scarecrow.persistence.domain.Goods">
+    SELECT
+    <include refid="columns" />
+    FROM <include refid="tableName" />
+    WHERE yn=0
+    <if test="userId != null">
+      AND  user_id = #{userId}
+    </if>
+    <if test="keyword != null">
+      AND  keyword = #{keyword}
+    </if>
+    <if test="goodsClass != null">
+      AND  goods_class = #{goodsClass}
+    </if>
+    <if test="goodsName != null">
+      AND goods_name LIKE #{goodsName}
+    </if>
+    <if test="brandId != null">
+      AND brand_id=#{brandId}
+    </if>
+    <if test="sex != null">
+      AND sex=#{sex}
+    </if>
+    <if test="status != null">
+      AND status=#{status}
+    </if>
+    <if test="createTime != null">
+      AND create_time &gt; #{createTime}
+    </if>
+    <if test="endTime != null">
+      AND create_time &lt; #{endTime}
+    </if>
+    ORDER BY create_time DESC
+    limit #{startRow},#{pageSize}
+  </select>
+
+  <select id="queryCountByCondition" parameterType="com.shoes.scarecrow.persistence.domain.GoodsCondition" resultType="int">
+    SELECT
+    count(1)
+    FROM <include refid="tableName" />
+    WHERE yn=0
+    <if test="userId != null">
+      AND  user_id = #{userId}
+    </if>
+    <if test="keyword != null">
+      AND  keyword = #{keyword}
+    </if>
+    <if test="goodsClass != null">
+      AND  goods_class = #{goodsClass}
+    </if>
+    <if test="goodsName != null">
+      AND goods_name LIKE #{goodsName}
+    </if>
+    <if test="brandId != null">
+      AND brand_id=#{brandId}
+    </if>
+    <if test="sex != null">
+      AND sex=#{sex}
+    </if>
+    <if test="status != null">
+      AND status=#{status}
+    </if>
+    <if test="createTime != null">
+      AND create_time &gt; #{createTime}
+    </if>
+    <if test="endTime != null">
+      AND create_time &lt; #{endTime}
+    </if>
+  </select>
+
+  <select id="queryById" resultMap="BaseResultMap" parameterType="int">
+    SELECT
+    <include refid="columns" />
+    FROM <include refid="tableName" />
+    WHERE id=#{id}
+  </select>
+
+  <update id="update" parameterType="com.shoes.scarecrow.persistence.domain.Brand" >
+    UPDATE <include refid="tableName" />
+    SET
+    <trim suffixOverrides=",">
+      <if test="price != null">
+          price=#{price},
+      </if>
+      <if test="keyword != null">
+        keyword=#{keyword},
+      </if>
+      <if test="goodsClass != null">
+        goods_class=#{goodsClass},
+      </if>
+      <if test="goodsName != null">
+        goods_name=#{goodsName},
+      </if>
+      <if test="goodsDesc != null">
+        goods_desc=#{goodsDesc},
+      </if>
+      <if test="price != null">
+      remark=#{remark},
+      </if>
+      <if test="brandId != null">
+        brand_id=#{brandId},
+      </if>
+      <if test="sex != null">
+        sex=#{sex},
+      </if>
+      <if test="updateUser != null">
+        update_user=#{updateUser},
+      </if>
+      <if test="remark != null">
+        remark=#{remark},
+      </if>
+      <if test="status != null">
+        status=#{status},
+      </if>
+      update_time=now(),
+      version=version+1
+    </trim>
+    WHERE yn=0   AND  id = #{id}
+  </update>
+
+  <update id="delById" parameterType="int" >
+    UPDATE <include refid="tableName" />
+    SET yn=1, update_time=now(),update_user=#{user},version=version+1
+    WHERE yn=0 AND id = #{id}
+  </update>
+
 </mapper>

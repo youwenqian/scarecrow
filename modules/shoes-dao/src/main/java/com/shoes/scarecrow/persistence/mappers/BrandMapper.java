@@ -14,7 +14,11 @@ public interface BrandMapper {
 
     int queryCountByCondition(BrandCondition condition);
 
-    int updateBrand(int id);
+    Brand queryById(int id);
 
-    int delBrand(int id);
+    Brand queryByName(String name);
+
+    int update(Brand record);
+
+    int delById(int id);
 }

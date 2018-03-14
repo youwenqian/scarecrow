@@ -19,7 +19,6 @@ public class StockServiceTest extends BaseTest {
     public void saveStock() throws Exception {
         Stock stock = new Stock();
         stock.setBatchNo("123456");
-        stock.setColor(1);
         stock.setCreateTime(new Date());
         stock.setIntoPrice(1652.3333);
         int count = stockService.saveStock(stock);

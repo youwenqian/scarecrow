@@ -3,6 +3,7 @@ package com.shoes.scarecrow.persistence.domain;
 import lombok.Data;
 
 import java.io.Serializable;
+import java.util.Date;
 
 /**
  * @author wangyucheng
@@ -19,4 +20,8 @@ public class BaseCondition implements Serializable {
     private Integer pageSize = 10;
 
     private Integer startRow = 0;
+
+    private Date createTime;
+
+    private Date endTime;
 }

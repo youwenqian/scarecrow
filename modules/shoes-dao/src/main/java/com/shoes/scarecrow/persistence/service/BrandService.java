@@ -20,10 +20,13 @@ public class BrandService {
     protected BrandMapper brandMapper;
 
     public int saveBrand(Brand brand){
+        if(brand == null) return 0;
+        if(brandMapper.queryByName(brand.getName()) != null)
+            return 0;
         return brandMapper.insert(brand);
     }
 
-    public List<Brand> queryBrandByCondition(BrandCondition condition){
+    public List<Brand> queryByCondition(BrandCondition condition){
         return brandMapper.queryByCondition(condition);
     }
 
@@ -31,12 +34,22 @@ public class BrandService {
         return brandMapper.queryCountByCondition(condition);
     }
 
-    public int updateBrand(int id){
-        return brandMapper.updateBrand(id);
+    public Brand queryById(int id){
+        return brandMapper.queryById(id);
+    }
+
+    public Brand queryByName(String name){
+        return brandMapper.queryByName(name);
+    }
+
+    public int updateBrand(Brand brand){
+        Brand oriBrand = brandMapper.queryByName(brand.getName());
+        if(oriBrand == null || oriBrand.getId() == brand.getId());
+            return brandMapper.update(brand);
     }
 
     public int delBrand(int id){
-        return brandMapper.delBrand(id);
+        return brandMapper.delById(id);
     }
 
 }

@@ -13,8 +13,11 @@
     <result column="yn" jdbcType="INTEGER" property="yn" />
     <result column="version" jdbcType="INTEGER" property="version" />
   </resultMap>
+
+  <sql id="tableName">brand</sql>
+
   <insert id="insert" parameterType="com.shoes.scarecrow.persistence.domain.Brand">
-    insert into brand (id, name, remark,
+    insert into <include refid="tableName" /> (id, name, remark,
       create_time, create_user, update_time, 
       update_user, status, yn, 
       version)
@@ -24,7 +27,7 @@
       #{version,jdbcType=INTEGER})
   </insert>
   <insert id="insertSelective" parameterType="com.shoes.scarecrow.persistence.domain.Brand">
-    insert into brand
+    insert into <include refid="tableName" />
     <trim prefix="(" suffix=")" suffixOverrides=",">
       <if test="id != null">
         id,
@@ -93,11 +96,11 @@
 
   <select id="queryByCondition" parameterType="com.shoes.scarecrow.persistence.domain.BrandCondition" resultType="com.shoes.scarecrow.persistence.domain.Brand">
       SELECT
-    id, name, remark,
-    create_time, create_user, update_time,
-    update_user, status, yn,
-    version
-      FROM brand
+     id, name, remark,
+     create_time, create_user, update_time,
+     update_user, status, yn,
+      version
+      FROM <include refid="tableName" />
       WHERE yn=0
     <if test="id != null">
       AND  id = #{id}
@@ -118,6 +121,7 @@
   <select id="queryCountByCondition" parameterType="com.shoes.scarecrow.persistence.domain.BrandCondition" resultType="int">
     SELECT
     count(1)
+    FROM <include refid="tableName" />
     WHERE yn=0
     <if test="id != null">
       AND  id = #{id}
@@ -133,13 +137,34 @@
     </if>
   </select>
 
-  <update id="updateBrand" parameterType="int" >
-    UPDATE brand SET name=#{name},remark=#{remark}, update_time=now(),update_user=#{user}
+  <select id="queryById" resultMap="BaseResultMap" parameterType="int">
+    SELECT
+     id, name, remark,
+     create_time, create_user, update_time,
+     update_user, status, yn,
+      version
+      FROM <include refid="tableName" />
+      WHERE id=#{id}
+  </select>
+
+  <select id="queryByName" resultMap="BaseResultMap" parameterType="string">
+    SELECT
+    id, name, remark,
+    create_time, create_user, update_time,
+    update_user, status, yn,
+    version
+    FROM <include refid="tableName" />
+    WHERE name=#{name} and yn=0
+  </select>
+
+  <update id="update" parameterType="com.shoes.scarecrow.persistence.domain.Brand" >
+    UPDATE <include refid="tableName" /> SET name=#{name},remark=#{remark}, update_time=now(),update_user=#{updateUser},
+    remark=#{remark},status=#{status},version=version+1
     WHERE yn=0   AND  id = #{id}
   </update>
 
-  <update id="delBrand" parameterType="int" >
-    UPDATE brand SET yn=1, update_time=now(),update_user=#{user}
+  <update id="delById" parameterType="int" >
+    UPDATE <include refid="tableName" /> SET yn=1, update_time=now(),update_user=#{user}
     WHERE yn=0   AND  id = #{id}
   </update>
 
