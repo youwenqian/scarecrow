@@ -15,12 +15,13 @@
   </resultMap>
 
   <sql id="tableName">brand</sql>
+  <sql id="columns">id, name, remark,
+      create_time, create_user, update_time,
+      update_user, status, yn,
+      version</sql>
 
   <insert id="insert" parameterType="com.shoes.scarecrow.persistence.domain.Brand">
-    insert into <include refid="tableName" /> (id, name, remark,
-      create_time, create_user, update_time, 
-      update_user, status, yn, 
-      version)
+    insert into <include refid="tableName" /> (<include refid="tableName"/>)
     values (#{id,jdbcType=INTEGER}, #{name,jdbcType=VARCHAR}, #{remark,jdbcType=VARCHAR}, 
       #{createTime,jdbcType=TIMESTAMP}, #{createUser,jdbcType=VARCHAR}, #{updateTime,jdbcType=TIMESTAMP}, 
       #{updateUser,jdbcType=VARCHAR}, #{status,jdbcType=INTEGER}, #{yn,jdbcType=INTEGER}, 
@@ -95,11 +96,7 @@
   </insert>
 
   <select id="queryByCondition" parameterType="com.shoes.scarecrow.persistence.domain.BrandCondition" resultType="com.shoes.scarecrow.persistence.domain.Brand">
-      SELECT
-     id, name, remark,
-     create_time, create_user, update_time,
-     update_user, status, yn,
-      version
+      SELECT <include refid="columns" />
       FROM <include refid="tableName" />
       WHERE yn=0
     <if test="id != null">
@@ -138,21 +135,13 @@
   </select>
 
   <select id="queryById" resultMap="BaseResultMap" parameterType="int">
-    SELECT
-     id, name, remark,
-     create_time, create_user, update_time,
-     update_user, status, yn,
-      version
+    SELECT <include refid="columns" />
       FROM <include refid="tableName" />
       WHERE id=#{id}
   </select>
 
   <select id="queryByName" resultMap="BaseResultMap" parameterType="string">
-    SELECT
-    id, name, remark,
-    create_time, create_user, update_time,
-    update_user, status, yn,
-    version
+    SELECT <include refid="columns" />
     FROM <include refid="tableName" />
     WHERE name=#{name} and yn=0
   </select>
