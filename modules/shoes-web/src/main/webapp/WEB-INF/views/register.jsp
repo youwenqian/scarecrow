@@ -5,7 +5,11 @@
   Time: 下午11:46
   To change this template use File | Settings | File Templates.
 --%>
-<%@ page contentType="text/html;charset=UTF-8" language="java" %>
+<%@ page language="java" import="java.util.*" pageEncoding="UTF-8" %>
+<%
+    String path = request.getContextPath();
+    String basePath = request.getScheme() + "://" + request.getServerName() + ":" + request.getServerPort() + path + "/";
+%>
 <!doctype html>
 <html>
 <head>
@@ -14,90 +18,135 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>shoes circle</title>
     <title>&nbsp;shoes circle&nbsp;</title>
-    <link rel="stylesheet" type="text/css" href="/statics/js/login/css/normalize.css"/>
-    <link rel="stylesheet" type="text/css" href="/statics/js/login/css/default.css">
-    <link rel="stylesheet" type="text/css" href="/statics/js/login/css/styles.css">
-    <!--[if IE]>
-    <script src="/statics/js/html5shiv/html5shiv.min.js"></script>
-    <![endif]-->
-    <!-- layui -->
-    <link rel="stylesheet" href="/statics/js/layui/css/layui.css" media="all">
+
+    <link rel="stylesheet" type="text/css" href="<%=basePath%>js/login/css/normalize.css"/>
+    <link rel="stylesheet" type="text/css" href="<%=basePath%>js/login/css/default.css">
+    <link rel="stylesheet" type="text/css" href="<%=basePath%>js/login/css/styles.css">
+    <link rel="stylesheet" href="<%=basePath%>js/layui/css/layui.css" media="all">
+    <script src="<%=basePath%>js/jquery-1.9.1.min.js"></script>
+    <script src="<%=basePath%>js/layui/layui.js" charset="utf-8"></script>
+    <script src="<%=basePath%>js/custom/register.js"></script>
 </head>
 <body>
 <div class="htmleaf-container">
     <div class="wrapper">
         <div class="register">
-            <div class="">
-                <form class="layui-form" autocomplete="off">
-                    <div class="layui-form-item" pane>
-                        <div class="layui-inline">
-                            <label class="layui-form-label" style="width:100px;">用户名</label>
-                            <div class="layui-input-inline">
-                                <input type="text" name="nickName" lay-verify="required" placeholder="用户名" autocomplete="off" class="layui-input">
-                            </div>
-                        </div>
-                        <div class="layui-inline">
-                            <label class="layui-form-label"  style="width:100px;">登录密码</label>
-                            <div class="layui-input-inline">
-                                <input type="text" name="passWord" lay-verify="required" placeholder="登录系统的密码" autocomplete="off" class="layui-input">
-                            </div>
-                        </div>
-                        <div class="layui-inline">
-                            <label class="layui-form-label"  style="width:100px;">赋权密码</label>
-                            <div class="layui-input-inline">
-                                <input type="text" name="confirmPassword" lay-verify="required" placeholder="赋权密码" autocomplete="off" class="layui-input">
-                            </div>
-                        </div>
-                    </div>
-                    <div class="layui-form-item" pane>
-                        <div class="layui-inline">
+            <div class="layui-row">
+                <div class="layui-col-md12">
+                    <form class="layui-form" autocomplete="off" id="userForm">
+                        <div class="layui-form-item" pane>
                             <div class="layui-inline">
-                                <label class="layui-form-label"  style="width:100px;">姓名</label>
+                                <label class="layui-form-label" style="width:100px;">用户名</label>
                                 <div class="layui-input-inline">
-                                    <input type="text" name="userName" lay-verify="required" placeholder="姓名" autocomplete="off" class="layui-input">
+                                    <input type="text" name="userName" lay-verify="required" placeholder="用户名"
+                                           autocomplete="off" class="layui-input">
                                 </div>
                             </div>
                             <div class="layui-inline">
-                                <div class="layui-input-block">
-                                    <input type="radio" name="sex" value="M" />男
-                                    <input type="radio" name="sex" value="F" checked/>女
-                                    <input type="radio" name="sex" value="female">Female
-                                </div>
-                            </div>
-                            <div class="layui-inline">
-                                <div class="layui-inline">
-                                    <label class="layui-form-label"  style="width:100px;">联系电话</label>
-                                    <div class="layui-input-inline">
-                                        <input type="tel" name="phoneNo" lay-verify="phone" autocomplete="off" class="layui-input">
-                                    </div>
+                                <label class="layui-form-label" style="width:100px">昵称</label>
+                                <div class="layui-input-inline">
+                                    <input type="text" name="nickName" placeholder="昵称" class="layui-input">
                                 </div>
                             </div>
                         </div>
-                    </div>
-                </form>
-
+                        <div class="layui-form-item" pane>
+                            <div class="layui-inline">
+                                <label class="layui-form-label" style="width:100px;">登录密码</label>
+                                <div class="layui-input-inline">
+                                    <input type="password" name="password" lay-verify="required" placeholder="登录系统的密码"
+                                           autocomplete="off" class="layui-input">
+                                </div>
+                            </div>
+                            <div class="layui-inline">
+                                <label class="layui-form-label" style="width:100px;">赋权密码</label>
+                                <div class="layui-input-inline">
+                                    <input type="password" name="confirmPassword" lay-verify="required"
+                                           placeholder="赋权密码"
+                                           autocomplete="off" class="layui-input">
+                                </div>
+                            </div>
+                        </div>
+                        <div class="layui-form-item" pane>
+                            <div class="layui-inline">
+                                <label class="layui-form-label" style="width:100px;">淘宝名称</label>
+                                <div class="layui-input-inline">
+                                    <input type="text" name="taobaoName" lay-verify="required" placeholder="淘宝名称"
+                                           autocomplete="off" class="layui-input">
+                                </div>
+                            </div>
+                            <div class="layui-inline" style="width:300px;">
+                                <label class="layui-form-label">性别</label>
+                                <div class="layui-input-block" style="width:200px;">
+                                    <input type="radio" name="sex" value="1" title="男">
+                                    <input type="radio" name="sex" value="2" title="女" checked>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="layui-form-item" pane>
+                            <div class="layui-inline">
+                                <label class="layui-form-label" style="width:100px">出生日期</label>
+                                <input name="birthday" id="date1" autocomplete="off" class="layui-input"
+                                       style="width:200px;" type="text">
+                            </div>
+                            <div class="layui-inline" style="width:300px;">
+                                <label class="layui-form-label" style="width:100px">进货性质</label>
+                                <div class="layui-input-inline">
+                                    <select name="stockId" id="stockid" style="width:200px;">
+                                        <option value="">请选择</option>
+                                    </select>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="layui-form-item" pane>
+                            <div class="layui-inline">
+                                <label class="layui-form-label" style="width:100px;">联系电话</label>
+                                <div class="layui-input-inline">
+                                    <input type="tel" name="phoneNo" lay-verify="phone" autocomplete="off"
+                                           class="layui-input">
+                                </div>
+                            </div>
+                            <div class="layui-inline">
+                                <label class="layui-form-label" style="width:100px">微信二维码</label>
+                                <button type="button" class="layui-btn" id="weixinPicture" style="width:200px;">
+                                    <i class="layui-icon">&#xe67c;</i>上传图片
+                                </button>
+                            </div>
+                        </div>
+                        <div class="layui-form-item" pane>
+                            <div class="layui-inline" >
+                                <label class="layui-form-label" style="width:100px">地址</label>
+                                <div class="layui-input-block">
+                                    <input type="text" name="address" placeholder="地址" class="layui-input">
+                                </div>
+                            </div>
+                            <div class="layui-inline" style="width:300px;">
+                                <div class="layui-input-inline">
+                                    <input type="hidden" name="imageAddress" placeholder="图片地址" class="layui-input">
+                                </div>
+                            </div>
+                            <div class="layui-inline" style="width:300px;">
+                                <div class="layui-input-inline">
+                                    <input type="hidden" name="isPayment" placeholder="是否支付" class="layui-input">
+                                </div>
+                            </div>
+                            <div class="layui-inline" style="width:300px;">
+                                <div class="layui-input-inline">
+                                    <input type="hidden" name="userType" placeholder="用户类型" class="layui-input" value="1">
+                                </div>
+                            </div>
+                        </div>
+                        <div class="layui-form-item">
+                            <input type="button" value="确定" onClick="registerBase()"  style="background-color:indianred;">
+                            <%--<button class="layui-btn" lay-submit lay-filter="registerForm" onclick="registerBase()" style="background-color:indianred;">确定</button>--%>
+                        </div>
+                    </form>
+                </div>
+                <div id="erweima" style="display:none"></div>
             </div>
         </div>
-
-        <ul class="bg-bubbles">
-            <li></li>
-            <li></li>
-            <li></li>
-            <li></li>
-            <li></li>
-            <li></li>
-            <li></li>
-            <li></li>
-            <li></li>
-            <li></li>
-            <li></li>
-            <li></li>
-        </ul>
     </div>
 </div>
-
-<script src="/statics/js/jquery-1.9.1.min.js"></script>
-<script src="/statics/js/layui/layui.js" charset="utf-8"></script>
-<script src="/statics/js/custom/register.js"></script>
+<script>
+</script>
 </body>
 </html>
