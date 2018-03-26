@@ -32,8 +32,6 @@ import java.util.*;
 @RequestMapping("/register")
 public class RegisterController {
     private static Logger log = Logger.getLogger(RegisterController.class);
-    @Resource
-    private RegisterService registerService;
 
     @RequestMapping("/forward")
     public String forward(){

@@ -141,11 +141,11 @@
                         </div>
                     </form>
                 </div>
-                <div id="erweima" style="display:none"></div>
             </div>
         </div>
     </div>
 </div>
+<div id="erweima" style="display: none"> <img border="0" alt="支付二维码" style="width:100%; height:100%;" src="<%=basePath%>image/webwxgetmsgimg"  ></div>
 <script>
 </script>
 </body>
