@@ -2,7 +2,7 @@
 <%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <html>
 <head>
-    <title>修改用户</title>
+    <title>修改color</title>
     <link rel="shortcut icon" href="/favicon.ico" type="image/x-icon" />
     <link rel="stylesheet" href="/statics/css/font.css">
     <link rel="stylesheet" href="/statics/css/xadmin.css">
@@ -19,14 +19,14 @@
 
 <div class="x-body">
     <form class="layui-form" id="submitForm">
-        <input type="hidden" name="id" value="${brand.id}"/>
+        <input type="hidden" name="id" value="${color.id}"/>
         <div class="layui-form-item">
             <label for="L_name" class="layui-form-label">
                 <span class="x-red">*</span>名称
             </label>
             <div class="layui-input-inline">
                 <input type="text" id="L_name" name="name" required="" lay-verify="name"
-                       autocomplete="off" class="layui-input" value="${brand.name}">
+                       autocomplete="off" class="layui-input" value="${color.name}">
             </div>
             <div class="layui-form-mid layui-word-aux">
                 <span class="x-red">*</span>
@@ -39,7 +39,7 @@
             <div class="layui-input-inline">
                 <textarea id="L_remark" name="remark" lay-verify="remark"
                           autocomplete="off" class="layui-input"
-                          style=" width: 194px; height: 133px;">${brand.remark}</textarea>
+                          style=" width: 194px; height: 133px;">${color.remark}</textarea>
             </div>
         </div>
 
@@ -76,7 +76,7 @@
         //监听提交
         form.on('submit(add)', function(data){
             $.ajax({
-                url:"${root}brand/brandEdit",
+                url:"${root}color/colorEdit",
                 type: "POST",
                 data:$("#submitForm").serializeArray(),
                 success: function (data) {
@@ -85,7 +85,7 @@
                             // 获得frame索引
                             var index = parent.layer.getFrameIndex(window.name);
                             parent.layer.close(index);
-                            location.href='${root}brand/brandView';
+                            location.href='${root}color/colorList';
                         });
                     }else{
                         layer.alert("修改失败", {icon: 6},function () {
@@ -104,11 +104,5 @@
 
     });
 </script>
-<script>var _hmt = _hmt || []; (function() {
-    var hm = document.createElement("script");
-    hm.src = "https://hm.baidu.com/hm.js?b393d153aeb26b46e9431fabaf0f6190";
-    var s = document.getElementsByTagName("script")[0];
-    s.parentNode.insertBefore(hm, s);
-})();</script>
 </body>
 </html>

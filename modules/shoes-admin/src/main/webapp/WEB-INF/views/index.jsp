@@ -100,9 +100,15 @@
                         </a>
                     </li>
                     <li>
-                        <a _href="${root}/user/userView">
+                        <a _href="${root}/size/sizeList">
                             <i class="iconfont">&#xe6a7;</i>
                             <cite>尺码管理</cite>
+                        </a>
+                    </li>
+                    <li>
+                        <a _href="${root}/color/colorList">
+                            <i class="iconfont">&#xe6a7;</i>
+                            <cite>color管理</cite>
                         </a>
                     </li>
                     <li>

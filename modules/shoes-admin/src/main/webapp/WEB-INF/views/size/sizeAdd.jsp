@@ -1,8 +1,7 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
-<%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <html>
 <head>
-    <title>修改用户</title>
+    <title>添加size</title>
     <link rel="shortcut icon" href="/favicon.ico" type="image/x-icon" />
     <link rel="stylesheet" href="/statics/css/font.css">
     <link rel="stylesheet" href="/statics/css/xadmin.css">
@@ -18,15 +17,14 @@
 <body>
 
 <div class="x-body">
-    <form class="layui-form" id="submitForm">
-        <input type="hidden" name="id" value="${brand.id}"/>
+    <form class="layui-form" id="submitForm" method="post" >
         <div class="layui-form-item">
             <label for="L_name" class="layui-form-label">
                 <span class="x-red">*</span>名称
             </label>
             <div class="layui-input-inline">
                 <input type="text" id="L_name" name="name" required="" lay-verify="name"
-                       autocomplete="off" class="layui-input" value="${brand.name}">
+                       autocomplete="off" class="layui-input">
             </div>
             <div class="layui-form-mid layui-word-aux">
                 <span class="x-red">*</span>
@@ -39,13 +37,13 @@
             <div class="layui-input-inline">
                 <textarea id="L_remark" name="remark" lay-verify="remark"
                           autocomplete="off" class="layui-input"
-                          style=" width: 194px; height: 133px;">${brand.remark}</textarea>
+                style=" width: 194px; height: 133px;"></textarea>
             </div>
         </div>
-
         <div class="layui-form-item">
-            <button  class="layui-btn" lay-filter="add" lay-submit="">
-                确定
+            </label>
+            <button  class="layui-btn" lay-filter="add" lay-submit="submit">
+                增加
             </button>
         </div>
     </form>
@@ -75,20 +73,21 @@
 
         //监听提交
         form.on('submit(add)', function(data){
+
             $.ajax({
-                url:"${root}brand/brandEdit",
+                url:"${root}size/sizeAdd",
                 type: "POST",
                 data:$("#submitForm").serializeArray(),
                 success: function (data) {
                     if(data == 'success'){
-                        layer.alert("修改成功", {icon: 6},function () {
+                        layer.alert("增加成功", {icon: 6},function () {
                             // 获得frame索引
                             var index = parent.layer.getFrameIndex(window.name);
                             parent.layer.close(index);
-                            location.href='${root}brand/brandView';
+                            location.href='${root}size/sizeView';
                         });
                     }else{
-                        layer.alert("修改失败", {icon: 6},function () {
+                        layer.alert("增加失败", {icon: 6},function () {
                             // 获得frame索引
                             var index = parent.layer.getFrameIndex(window.name);
                             parent.layer.close(index);
@@ -98,17 +97,10 @@
 
             });
             return false;
-            return false;
         });
 
 
     });
 </script>
-<script>var _hmt = _hmt || []; (function() {
-    var hm = document.createElement("script");
-    hm.src = "https://hm.baidu.com/hm.js?b393d153aeb26b46e9431fabaf0f6190";
-    var s = document.getElementsByTagName("script")[0];
-    s.parentNode.insertBefore(hm, s);
-})();</script>
 </body>
 </html>
