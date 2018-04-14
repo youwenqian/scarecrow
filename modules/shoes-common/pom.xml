@@ -14,5 +14,11 @@
     <packaging>jar</packaging>
     <name>shoes-common</name>
     <url>http://maven.apache.org</url>
-
+    <dependencies>
+        <dependency>
+            <groupId>com.alibaba</groupId>
+            <artifactId>fastjson</artifactId>
+            <version>1.2.47</version>
+        </dependency>
+</dependencies>
 </project>

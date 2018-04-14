@@ -15,8 +15,14 @@ import javax.servlet.http.HttpServletResponse;
 public class AuthorizeInterceptor implements HandlerInterceptor {
 
     @Override
-    public boolean preHandle(HttpServletRequest httpServletRequest, HttpServletResponse httpServletResponse, Object o) throws Exception {
-        return false;
+    public boolean preHandle(HttpServletRequest request, HttpServletResponse httpServletResponse, Object o) throws Exception {
+        String context = request.getContextPath();
+        String protocol = request.getScheme();
+        Integer port = request.getServerPort();
+        String name = request.getServerName();
+        String root = protocol + "://" + name + ":" + (port == null?80:port) + context + "/";
+        request.setAttribute("root", root);
+        return true;
     }
 
     @Override

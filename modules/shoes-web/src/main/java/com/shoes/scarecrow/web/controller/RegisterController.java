@@ -2,7 +2,6 @@ package com.shoes.scarecrow.web.controller;
 
 import com.shoes.scarecrow.persistence.domain.User;
 import com.shoes.scarecrow.web.model.Stock;
-import com.shoes.scarecrow.web.service.RegisterService;
 import org.apache.commons.fileupload.FileItem;
 import org.apache.commons.fileupload.FileUploadException;
 import org.apache.commons.fileupload.disk.DiskFileItemFactory;
