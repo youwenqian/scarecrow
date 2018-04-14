@@ -82,7 +82,7 @@
                 </a>
                 <ul class="sub-menu">
                     <li>
-                        <a _href="${root}/user/userView">
+                        <a _href="${root}/goods/goodsView">
                             <i class="iconfont">&#xe6a7;</i>
                             <cite>商品管理</cite>
                         </a>
@@ -94,7 +94,7 @@
                         </a>
                     </li>
                     <li>
-                        <a _href="${root}/user/userView">
+                        <a _href="${root}/brand/brandList">
                             <i class="iconfont">&#xe6a7;</i>
                             <cite>品牌管理</cite>
                         </a>

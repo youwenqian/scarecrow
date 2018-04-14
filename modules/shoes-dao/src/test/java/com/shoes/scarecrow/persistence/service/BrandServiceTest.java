@@ -67,8 +67,8 @@ public class BrandServiceTest extends BaseTest {
 
     @Test
     public void delBrand() throws Exception {
-        int count = brandService.delBrand(3);
-        System.out.println(count);
+//        int count = brandService.delBrand(3);
+//        System.out.println(count);
 
     }
 

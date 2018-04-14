@@ -98,7 +98,7 @@ public class UserController {
         int count = 0;
         try {
             user.setUpdateUser(LoginContext.getUserName(request));
-            userService.updateUser(user);
+            count = userService.updateUser(user);
         } catch (Exception e) {
             e.printStackTrace();
         }

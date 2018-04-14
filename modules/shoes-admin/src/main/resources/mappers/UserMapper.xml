@@ -117,7 +117,7 @@
 
   <update id="update" parameterType="com.shoes.scarecrow.persistence.domain.User" >
     update <include refid="tableName" />
-    SET user_name=#{userName}, nick_name=#{nickName},is_payment=#{isPayment}, sex=#{sex},
+    SET nick_name=#{nickName},is_payment=#{isPayment}, sex=#{sex},
     user_type=#{userType}, phone_no=#{phoneNo}, address=#{address},
     taobao_name=#{taobaoName}, update_time=#{updateTime}, update_user=#{updateUser}
     WHERE  id=#{id}

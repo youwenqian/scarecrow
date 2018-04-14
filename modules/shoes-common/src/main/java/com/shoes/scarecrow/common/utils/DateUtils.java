@@ -1,5 +1,6 @@
 package com.shoes.scarecrow.common.utils;
 
+import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
 import java.util.Date;
@@ -11,6 +12,9 @@ import java.util.TimeZone;
 *	2016
 */
 public class DateUtils {
+    private static final String DATE_FORMAT_24_HOUR = "yyyy-MM-dd HH:mm:ss";
+
+    private static final String DATE_FORMAT_DAY = "yyyy-MM-dd";
 
 
 	public static Calendar getUTCCalendar() {
@@ -64,6 +68,16 @@ public class DateUtils {
     public static String formatDate(Date date, String pattern){
     	SimpleDateFormat sdf = new SimpleDateFormat(pattern);
     	return sdf.format(date);
+    }
+
+    public static Date parse(String dateStr, String pattern) throws ParseException {
+        SimpleDateFormat sdf = new SimpleDateFormat(pattern);
+       return sdf.parse(dateStr);
+    }
+
+    public static Date parse(String dateStr) throws ParseException {
+        SimpleDateFormat sdf = new SimpleDateFormat(DATE_FORMAT_DAY);
+        return sdf.parse(dateStr);
     }
 
 }

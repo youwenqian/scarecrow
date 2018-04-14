@@ -6,6 +6,7 @@ import com.shoes.scarecrow.persistence.mappers.BrandMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.Date;
 import java.util.List;
 
 /**
@@ -23,6 +24,8 @@ public class BrandService {
         if(brand == null) return 0;
         if(brandMapper.queryByName(brand.getName()) != null)
             return 0;
+        brand.setCreateTime(new Date());
+        brand.setUpdateTime(new Date());
         return brandMapper.insert(brand);
     }
 
@@ -48,8 +51,8 @@ public class BrandService {
             return brandMapper.update(brand);
     }
 
-    public int delBrand(int id){
-        return brandMapper.delById(id);
+    public int delBrand(List<Integer> ids, String updateUser){
+        return brandMapper.delById(ids, updateUser);
     }
 
 }

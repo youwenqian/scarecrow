@@ -1,0 +1,90 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.shoes.scarecrow.persistence.mappers.BrandMapper">
+  <resultMap id="BaseResultMap" type="com.shoes.scarecrow.persistence.domain.Brand">
+    <result column="id" jdbcType="INTEGER" property="id" />
+    <result column="name" jdbcType="VARCHAR" property="name" />
+    <result column="remark" jdbcType="VARCHAR" property="remark" />
+    <result column="create_time" jdbcType="TIMESTAMP" property="createTime" />
+    <result column="create_user" jdbcType="VARCHAR" property="createUser" />
+    <result column="update_time" jdbcType="TIMESTAMP" property="updateTime" />
+    <result column="update_user" jdbcType="VARCHAR" property="updateUser" />
+    <result column="status" jdbcType="INTEGER" property="status" />
+    <result column="yn" jdbcType="INTEGER" property="yn" />
+    <result column="version" jdbcType="INTEGER" property="version" />
+  </resultMap>
+
+  <sql id="tableName">brand</sql>
+  <sql id="columns">id, name, remark,
+      create_time, create_user, update_time,
+      update_user, status, yn,
+      version</sql>
+
+  <insert id="insert" parameterType="com.shoes.scarecrow.persistence.domain.Brand">
+    insert into <include refid="tableName" /> (<include refid="columns"/>)
+    values (#{id,jdbcType=INTEGER}, #{name,jdbcType=VARCHAR}, #{remark,jdbcType=VARCHAR}, 
+      #{createTime,jdbcType=TIMESTAMP}, #{createUser,jdbcType=VARCHAR}, #{updateTime,jdbcType=TIMESTAMP}, 
+      #{updateUser,jdbcType=VARCHAR}, #{status,jdbcType=INTEGER}, #{yn,jdbcType=INTEGER}, 
+      #{version,jdbcType=INTEGER})
+  </insert>
+
+  <sql id="sqlWhere">
+    <if test="id != null">
+      AND  id = #{id}
+    </if>
+    <if test="name != null">
+      AND name LIKE  concat(concat('%',#{name}),'%')
+    </if>
+    <if test="createTime != null">
+      AND create_time &gt; #{createTime}
+    </if>
+    <if test="endTime != null">
+      AND create_time &lt; #{endTime}
+    </if>
+  </sql>
+
+  <select id="queryByCondition" parameterType="com.shoes.scarecrow.persistence.domain.BrandCondition" resultMap="BaseResultMap">
+      SELECT <include refid="columns" />
+      FROM <include refid="tableName" />
+      WHERE yn=0
+    <include refid="sqlWhere" />
+    ORDER BY create_time DESC
+    limit #{startRow},#{pageSize}
+  </select>
+
+  <select id="queryCountByCondition" parameterType="com.shoes.scarecrow.persistence.domain.BrandCondition" resultType="int">
+    SELECT
+    count(1)
+    FROM <include refid="tableName" />
+    WHERE yn=0
+    <include refid="sqlWhere" />
+  </select>
+
+  <select id="queryById" resultMap="BaseResultMap" parameterType="int">
+    SELECT <include refid="columns" />
+      FROM <include refid="tableName" />
+      WHERE id=#{id}
+  </select>
+
+  <select id="queryByName" resultMap="BaseResultMap" parameterType="string">
+    SELECT <include refid="columns" />
+    FROM <include refid="tableName" />
+    WHERE name=#{name} and yn=0
+  </select>
+
+  <update id="update" parameterType="com.shoes.scarecrow.persistence.domain.Brand" >
+    UPDATE <include refid="tableName" /> SET name=#{name},remark=#{remark}, update_time=now(),
+    update_user=#{updateUser},status=#{status},version=version+1
+    WHERE yn=0   AND  id = #{id}
+  </update>
+
+  <update id="delById" parameterType="java.util.List" >
+    UPDATE <include refid="tableName" /> SET yn=1, update_time=now(),update_user=#{updateUser}
+    WHERE yn=0   AND  id in
+    <foreach collection="ids" item="id" index="index"
+             open="(" close=")" separator=",">
+      #{id}
+    </foreach>
+  </update>
+
+</mapper>
