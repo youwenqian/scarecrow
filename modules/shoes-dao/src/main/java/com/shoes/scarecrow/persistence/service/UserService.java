@@ -34,6 +34,10 @@ public class UserService {
         return userMapper.update(user);
     }
 
+    public int updatePass(Long id, String password, String userName){
+        return userMapper.updatePass(id, password, userName);
+    }
+
     public List<User> queryListByCondition(Map<String, Object> param){
         return userMapper.queryListByCondition(param);
     }

@@ -101,6 +101,19 @@
         </div>
 
         <div class="layui-form-item">
+            <label for="L_confirmPassword" class="layui-form-label">
+                <span class="x-red">*</span>进货密码
+            </label>
+            <div class="layui-input-inline">
+                <input type="confirmPassword" id="L_confirmPassword" name="confirmPassword" required="" lay-verify="confirmPassword"
+                       autocomplete="off" class="layui-input">
+            </div>
+            <div class="layui-form-mid layui-word-aux">
+                6到16个字符
+            </div>
+        </div>
+
+        <div class="layui-form-item">
             <button  class="layui-btn" lay-filter="add" lay-submit="">
                 确定
             </button>
@@ -140,12 +153,7 @@
                 }
             },
             phoneNo:[/^[1][3-9][0-9]{9}$/, "手机号必须为11位数字"],
-            pass: [/(.+){6,12}$/, '密码必须6到12位'] ,
-            repass: function(value){
-                if($('#L_pass').val()!=$('#L_repass').val()){
-                    return '两次密码不一致';
-                }
-            }
+            confirmPassword: [/(.+){6,12}$/, '密码必须6到12位']
         });
 
         //监听提交

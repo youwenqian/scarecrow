@@ -10,7 +10,6 @@ import org.springframework.web.bind.annotation.RequestMapping;
  */
 @Controller
 @RequestMapping("/advert")
-public class AdvertController
-{
+public class AdvertController{
 
 }

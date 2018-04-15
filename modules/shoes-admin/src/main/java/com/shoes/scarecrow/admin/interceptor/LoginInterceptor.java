@@ -30,7 +30,7 @@ public class LoginInterceptor extends AbstractInterceptor {
             request.setAttribute("indexUser", user);
             return true;
         } else{
-            response.sendRedirect("/toLogin");
+            response.sendRedirect("/index");
             return false;
         }
 

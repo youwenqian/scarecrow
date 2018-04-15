@@ -140,5 +140,11 @@ public class UserController {
         }
         return "error";
     }
+    @RequestMapping("/userDetail")
+    public String userDetail(Long id, HttpServletRequest request, HttpServletResponse response){
+        User user = userService.getUserById(id);
+        request.setAttribute("user", user);
+        return "user/userDetail";
+    }
 
 }

@@ -22,5 +22,7 @@ public interface UserMapper {
 
     int update(User user);
 
+    int updatePass(@Param("id") Long id, @Param("password") String password,@Param("updateUser") String name);
+
     int del(@Param("ids") List<Long> ids);
 }

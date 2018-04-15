@@ -118,8 +118,16 @@
   <update id="update" parameterType="com.shoes.scarecrow.persistence.domain.User" >
     update <include refid="tableName" />
     SET nick_name=#{nickName},is_payment=#{isPayment}, sex=#{sex},
-    user_type=#{userType}, phone_no=#{phoneNo}, address=#{address},
-    taobao_name=#{taobaoName}, update_time=#{updateTime}, update_user=#{updateUser}
+    confirm_password=${confirmPassword}
+    phone_no=#{phoneNo}, address=#{address},
+    taobao_name=#{taobaoName}, update_time=now(), update_user=#{updateUser}
+    WHERE  id=#{id}
+  </update>
+
+  <update id="updatePass" parameterType="java.util.Map" >
+    update <include refid="tableName" />
+    SET
+    password=#{password}, update_time=now(), update_user=#{updateUser}
     WHERE  id=#{id}
   </update>
 

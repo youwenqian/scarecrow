@@ -10,7 +10,7 @@
 <body>
 <script type="text/javascript">
     $(document).ready(function(){
-        window.location.href = "toLogin?rd=" + Math.random();
+        window.location.href = "index?rd=" + Math.random();
     });
 </script>
 </body>
