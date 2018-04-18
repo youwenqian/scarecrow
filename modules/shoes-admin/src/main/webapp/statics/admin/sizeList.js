@@ -14,7 +14,7 @@ $(function () {
         });
     });
     $('#searchBtn').click(function () {
-        location.href = "../size/sizeList";
+        location.href = "${root}size/sizeList";
     });
 
 });
@@ -49,7 +49,7 @@ function member_stop(obj,id){
 function del(obj,id){
     layer.confirm('确认要删除吗？',function(index){
         $.ajax({
-            url:"../size/delSize",
+            url:"${root}size/delSize",
             type: "POST",
             data:{"id":id},
             success: function (data) {
@@ -72,7 +72,7 @@ function delAll () {
     var data = tableCheck.getData();
     layer.confirm('确认要删除吗？',function(index){
         $.ajax({
-            url:"../size/batchDel",
+            url:"${root}size/batchDel",
             type: "POST",
             data:{"ids":data.join(",")},
             success: function (data) {

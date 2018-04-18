@@ -21,12 +21,12 @@
     <meta name="viewport" content="width=device-width,user-scalable=yes, minimum-scale=0.4, initial-scale=0.8,target-densitydpi=low-dpi" />
     <meta http-equiv="Cache-Control" content="no-siteapp" />
 
-    <link rel="shortcut icon" href="/favicon.ico" type="image/x-icon" />
-    <link rel="stylesheet" href="/statics/css/font.css">
-    <link rel="stylesheet" href="/statics/css/xadmin.css">
+    <link rel="shortcut icon" href="${root}favicon.ico" type="image/x-icon" />
+    <link rel="stylesheet" href="${root}statics/css/font.css">
+    <link rel="stylesheet" href="${root}statics/css/xadmin.css">
     <script type="text/javascript" src="https://cdn.bootcss.com/jquery/3.2.1/jquery.min.js"></script>
-    <script src="/statics/lib/layui/layui.js" charset="utf-8"></script>
-    <script type="text/javascript" src="/statics/js/xadmin.js"></script>
+    <script src="${root}statics/lib/layui/layui.js" charset="utf-8"></script>
+    <script type="text/javascript" src="${root}statics/js/xadmin.js"></script>
 
 </head>
 <body class="login-bg">

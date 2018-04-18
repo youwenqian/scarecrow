@@ -14,7 +14,7 @@ $(function () {
         });
     });
     $('#brandSearchBtn').click(function () {
-        location.href = "../brand/brandList";
+        location.href = "${root}brand/brandList";
     });
 
 });
@@ -49,7 +49,7 @@ function member_stop(obj,id){
 function delBrand(obj,id){
     layer.confirm('确认要删除吗？',function(index){
         $.ajax({
-            url:"../brand/delBrand",
+            url:"${root}brand/delBrand",
             type: "POST",
             data:{"id":id},
             success: function (data) {
@@ -72,7 +72,7 @@ function delAllBrand () {
     var data = tableCheck.getData();
     layer.confirm('确认要删除吗？',function(index){
         $.ajax({
-            url:"../brand/batchDelBrand",
+            url:"${root}brand/batchDelBrand",
             type: "POST",
             data:{"ids":data.join(",")},
             success: function (data) {

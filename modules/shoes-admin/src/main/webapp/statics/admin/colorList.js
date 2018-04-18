@@ -14,7 +14,7 @@ $(function () {
         });
     });
     $('#searchBtn').click(function () {
-        location.href = "../color/colorList";
+        location.href = "${root}color/colorList";
     });
 
 });
@@ -49,7 +49,7 @@ function member_stop(obj,id){
 function del(obj,id){
     layer.confirm('确认要删除吗？',function(index){
         $.ajax({
-            url:"../color/delColor",
+            url:"${root}color/delColor",
             type: "POST",
             data:{"id":id},
             success: function (data) {
@@ -72,7 +72,7 @@ function delAll () {
     var data = tableCheck.getData();
     layer.confirm('确认要删除吗？',function(index){
         $.ajax({
-            url:"../color/batchDel",
+            url:"${root}color/batchDel",
             type: "POST",
             data:{"ids":data.join(",")},
             success: function (data) {

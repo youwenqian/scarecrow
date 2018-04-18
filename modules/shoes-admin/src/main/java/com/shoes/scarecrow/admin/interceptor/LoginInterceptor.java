@@ -24,7 +24,9 @@ public class LoginInterceptor extends AbstractInterceptor {
     @Override
     protected boolean innerPreHandle(HttpServletRequest request,
                                      HttpServletResponse response, Object handler) throws Exception {
-
+        if(request.getRequestURI() != null && (request.getRequestURI().contains("index") || request.getRequestURI().contains("login")) ){
+            return true;
+        }
         User user = (User) WebUtils.getSessionAttribute(request, Constants.ADMIN_SESSION_USER_KEY);
         if (user != null) {//已登录
             request.setAttribute("indexUser", user);

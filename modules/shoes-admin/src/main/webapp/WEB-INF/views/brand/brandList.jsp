@@ -9,16 +9,16 @@
 <head>
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
     <title>欢迎页面-X-admin2.0</title>
-    <link rel="shortcut icon" href="/favicon.ico" type="image/x-icon" />
-    <link rel="stylesheet" href="/statics/css/font.css">
-    <link rel="stylesheet" href="/statics/css/xadmin.css">
-    <link rel="stylesheet" href="/statics/css/simplePagination/simplePagination.css">
+    <link rel="shortcut icon" href="${root}favicon.ico" type="image/x-icon" />
+    <link rel="stylesheet" href="${root}statics/css/font.css">
+    <link rel="stylesheet" href="${root}statics/css/xadmin.css">
+    <link rel="stylesheet" href="${root}statics/css/simplePagination/simplePagination.css">
 
-    <script type="text/javascript" src="/statics/js/jQuery/jQuery-2.1.4.min.js"></script>
-    <script type="text/javascript" src="/statics/lib/layui/layui.js" charset="utf-8"></script>
-    <script type="text/javascript" src="/statics/js/xadmin.js"></script>
-    <script type="text/javascript" src="/statics/admin/brandList.js"></script>
-    <script type="text/javascript" src="/statics/js/simplePagination/jquery.simplePagination.js"></script>
+    <script type="text/javascript" src="${root}statics/js/jQuery/jQuery-2.1.4.min.js"></script>
+    <script type="text/javascript" src="${root}statics/lib/layui/layui.js" charset="utf-8"></script>
+    <script type="text/javascript" src="${root}statics/js/xadmin.js"></script>
+    <script type="text/javascript" src="${root}statics/admin/brandList.js"></script>
+    <script type="text/javascript" src="${root}statics/js/simplePagination/jquery.simplePagination.js"></script>
 
 
     <!--[if lt IE 9]>
@@ -49,7 +49,7 @@
     </div>
     <xblock>
         <button class="layui-btn layui-btn-danger" onclick="delAllBrand()"><i class="layui-icon"></i>批量删除</button>
-        <button class="layui-btn" onclick="x_admin_show('添加品牌','../brand/toBrandAdd', 600, 400)"><i class="layui-icon"></i>添加</button>
+        <button class="layui-btn" onclick="x_admin_show('添加品牌','${root}brand/toBrandAdd', 600, 400)"><i class="layui-icon"></i>添加</button>
         <span class="x-right" style="line-height:40px">共有数据：${count} 条</span>
     </xblock>
     <table class="layui-table">

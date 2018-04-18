@@ -14,7 +14,7 @@ $(function () {
         });
     });
     $('#searchBtn').click(function () {
-        location.href = "../user/userList";
+        location.href = "${root}user/userList";
     });
 
 });
@@ -49,7 +49,7 @@ function member_stop(obj,id){
 function delUser(obj,id){
     layer.confirm('确认要删除吗？',function(index){
         $.ajax({
-            url:"../user/delUser",
+            url:"${root}user/delUser",
             type: "POST",
             data:{"id":id},
             success: function (data) {
@@ -72,7 +72,7 @@ function delAllUser () {
     var data = tableCheck.getData();
     layer.confirm('确认要删除吗？',function(index){
         $.ajax({
-            url:"../user/batchDelUser",
+            url:"${root}user/batchDelUser",
             type: "POST",
             data:{"ids":data.join(",")},
             success: function (data) {

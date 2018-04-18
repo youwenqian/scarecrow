@@ -2,12 +2,12 @@
 <html>
 <head>
     <title>Title</title>
-    <link rel="shortcut icon" href="/favicon.ico" type="image/x-icon" />
-    <link rel="stylesheet" href="/statics/css/font.css">
-    <link rel="stylesheet" href="/statics/css/xadmin.css">
-    <script type="text/javascript" src="/statics/js/jQuery/jQuery-2.1.4.min.js"></script>
-    <script type="text/javascript" src="/statics/lib/layui/layui.js" charset="utf-8"></script>
-    <script type="text/javascript" src="/statics/js/xadmin.js"></script>
+    <link rel="shortcut icon" href="${root}favicon.ico" type="image/x-icon" />
+    <link rel="stylesheet" href="${root}statics/css/font.css">
+    <link rel="stylesheet" href="${root}statics/css/xadmin.css">
+    <script type="text/javascript" src="${root}statics/js/jQuery/jQuery-2.1.4.min.js"></script>
+    <script type="text/javascript" src="${root}statics/lib/layui/layui.js" charset="utf-8"></script>
+    <script type="text/javascript" src="${root}statics/js/xadmin.js"></script>
     <!-- 让IE8/9支持媒体查询，从而兼容栅格 -->
     <!--[if lt IE 9]>
     <script src="https://cdn.staticfile.org/html5shiv/r29/html5.min.js"></script>

@@ -5,10 +5,10 @@
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
-<link href="../common/style/css_base.css" rel="stylesheet" type="text/css" />
-<link href="../common/style/css_main.css" rel="stylesheet" type="text/css" />
+<link href="${root}common/style/css_base.css" rel="stylesheet" type="text/css" />
+<link href="${root}common/style/css_main.css" rel="stylesheet" type="text/css" />
 	
-<script type="text/javascript" src="../scripts/jquery/jquery-1.7.1.js"></script>
+<script type="text/javascript" src="${root}scripts/jquery/jquery-1.7.1.js"></script>
 
 <title>Insert title here</title>
 </head>
