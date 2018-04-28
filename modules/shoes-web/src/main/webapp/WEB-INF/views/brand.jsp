@@ -20,6 +20,7 @@
     <link rel="stylesheet" type="text/css" href="<%=basePath%>js/login/css/default.css">
     <link rel="stylesheet" type="text/css" href="<%=basePath%>js/login/css/styles.css">
     <link rel="stylesheet" type="text/css" href="<%=basePath%>css/common.css">
+    <link rel="stylesheet" type="text/css" href="<%=basePath%>js/bootstrap/css/bootstrap.css">
     <!--[if IE]>
     <script src="<%=basePath%>js/html5shiv/html5shiv.min.js"></script>
     <![endif]-->
@@ -30,7 +31,7 @@
 </head>
 <body>
 <form class="layui-form layui-form-pane" id="search-brand-form" style="padding: 5px;">
-    <div class="layui-form-item">
+    <div class="layui-form-item row">
         <div class="col-lg-4">
             <label class="layui-form-label">名称</label>
             <div class="layui-input-block">
@@ -45,7 +46,7 @@
         </div>
     </div>
 </form>
-<table class="layui-hide" id="table"></table>
+<table class="layui-hide" id="table" lay-filter="brandTable"></table>
 
 <form id="editForm" role="form" style="display:none">
     <div class = "form-group">
@@ -55,6 +56,10 @@
     <label for="nameEdit" class="col-sm-2 control-label">名称</label>
     <div class="col-sm-4">
         <input type="text" class="form-control" id="nameEdit" name="name" placeholder=“请输入名称”>
+    </div>
+    <label for="remarkEdit" class="col-sm-2 control-label">备注</label>
+    <div class="col-sm-4">
+        <input type="text" class="form-control" id="remarkEdit" name="remark" placeholder=“请输入名称”>
     </div>
     </div>
     <div class="form-group">
@@ -69,6 +74,10 @@
     <label for="nameAdd" class="col-sm-2 control-label">名称</label>
     <div class="col-sm-4">
         <input type="text" class="form-control" id="nameAdd" name="name" placeholder=“请输入名称”>
+    </div>
+    <label for="remarkAdd" class="col-sm-2 control-label">备注</label>
+    <div class="col-sm-4">
+        <input type="text" class="form-control" id="remarkAdd" name="reamrk" placeholder=“请输入备注”>
     </div>
     </div>
     <div class="form-group">

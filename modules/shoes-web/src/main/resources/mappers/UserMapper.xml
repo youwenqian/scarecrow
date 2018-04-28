@@ -40,7 +40,7 @@
       #{updateTime,jdbcType=TIMESTAMP}, #{createUser,jdbcType=VARCHAR}, #{updateUser,jdbcType=VARCHAR}, 
       #{remark,jdbcType=VARCHAR}, #{yn,jdbcType=TINYINT}, #{status,jdbcType=INTEGER})
   </insert>
-  <select id="getUserByNameAndPassword" resultMap="BaseResultMap">
+  <select id="getUserByNameAndPassword" resultMap="BaseResultMap" >
     select * from user where user_name=#{userName} and password=#{passWord}
   </select>
   <insert id="insertSelective" parameterType="com.shoes.scarecrow.persistence.domain.User">

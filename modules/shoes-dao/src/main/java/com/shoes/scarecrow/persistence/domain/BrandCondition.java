@@ -3,7 +3,6 @@ package com.shoes.scarecrow.persistence.domain;
 import lombok.Data;
 
 import java.io.Serializable;
-import java.util.Date;
 
 /**
  * 品牌插叙条件
@@ -16,11 +15,27 @@ public class BrandCondition extends BaseCondition implements Serializable{
 
     private static final long serialVersionUID = -1380792238465131203L;
 
-    private Date startTime;
-
     private Integer id;
 
     private String name;
 
+    public static long getSerialVersionUID() {
+        return serialVersionUID;
+    }
 
+    public Integer getId() {
+        return id;
+    }
+
+    public void setId(Integer id) {
+        this.id = id;
+    }
+
+    public String getName() {
+        return name;
+    }
+
+    public void setName(String brandName) {
+        this.name = brandName;
+    }
 }

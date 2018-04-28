@@ -93,7 +93,7 @@ public class GoodsController {
     }
     @RequestMapping("/deleteType/{id}")
     @ResponseBody
-    public Map deleteGoodsById(@PathVariable("id") Integer goodId,HttpServletResponse response,HttpSession session){
+    public Map deleteGoodsById(@PathVariable("id") Integer goodId, HttpServletResponse response, HttpSession session){
         log.info(session.getAttribute("userName") + "进入到删除商品信息的方法，删除商品id="+goodId);
         Map<String,Object> map = new HashMap<>();
         map.put("success",true);

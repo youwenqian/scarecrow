@@ -1,24 +1,24 @@
 package com.shoes.scarecrow.persistence.mappers;
 
 import com.shoes.scarecrow.persistence.domain.Size;
-import org.apache.ibatis.annotations.Param;
+import com.shoes.scarecrow.persistence.domain.SizeCondition;
+import org.springframework.stereotype.Repository;
 
 import java.util.List;
-import java.util.Map;
 
+@Repository("sizeMapper")
 public interface SizeMapper {
+    int insert(Size record);
 
-    int insert(Size size);
+    List<Size> queryByCondition(SizeCondition condition);
 
-    List<Size> queryByCondition(Map<String, Object> param);
-
-    int queryCountByCondition(Map<String, Object> param);
+    int queryCountByCondition(SizeCondition condition);
 
     Size queryById(int id);
 
-    int update(Size size);
+    Size queryByName(String name);
 
-    int delById(@Param("ids") List<Integer> ids);
+    int update(Size record);
 
-    Size queryByName(@Param("name") String name);
+    int delById(int id);
 }

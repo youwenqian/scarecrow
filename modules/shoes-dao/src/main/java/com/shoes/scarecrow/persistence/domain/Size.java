@@ -6,8 +6,8 @@ import lombok.Data;
 public class Size {
     private Integer id;
 
-    private String name;
+    private String sizeName;
 
-    private String remark;
+    private String desc;
 
 }

@@ -2,10 +2,11 @@ package com.shoes.scarecrow.persistence.mappers;
 
 import com.shoes.scarecrow.persistence.domain.Brand;
 import com.shoes.scarecrow.persistence.domain.BrandCondition;
-import org.apache.ibatis.annotations.Param;
+import org.springframework.stereotype.Repository;
 
 import java.util.List;
 
+@Repository("brandMapper")
 public interface BrandMapper {
     int insert(Brand record);
 
@@ -21,5 +22,5 @@ public interface BrandMapper {
 
     int update(Brand record);
 
-    int delById(@Param("ids") List<Integer> ids, @Param("updateUser") String updateUser);
+    int delById(int id);
 }

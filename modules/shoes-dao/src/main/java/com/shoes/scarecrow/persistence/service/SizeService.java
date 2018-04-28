@@ -1,36 +1,37 @@
 package com.shoes.scarecrow.persistence.service;
 
 import com.shoes.scarecrow.persistence.domain.Size;
+import com.shoes.scarecrow.persistence.domain.SizeCondition;
 import com.shoes.scarecrow.persistence.mappers.SizeMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
-import java.util.Map;
 
 /**
  * @author wangyucheng
  * @description
- * @create 2018/4/14 22:40
+ * @create 2018/3/10 18:45
  */
 @Service
 public class SizeService {
+
     @Autowired
     protected SizeMapper sizeMapper;
 
-    public int save(Size size){
+    public int saveSize(Size size){
         if(size == null) return 0;
-        if(queryByName(size.getName()) != null)
+        if(sizeMapper.queryByName(size.getSizeName()) != null)
             return 0;
         return sizeMapper.insert(size);
     }
 
-    public List<Size> queryByCondition(Map<String, Object> params){
-        return sizeMapper.queryByCondition(params);
+    public List<Size> queryByCondition(SizeCondition condition){
+        return sizeMapper.queryByCondition(condition);
     }
 
-    public int queryCountByCondition(Map<String, Object> params){
-        return sizeMapper.queryCountByCondition(params);
+    public int queryCountByCondition(SizeCondition condition){
+        return sizeMapper.queryCountByCondition(condition);
     }
 
     public Size queryById(int id){
@@ -41,11 +42,14 @@ public class SizeService {
         return sizeMapper.queryByName(name);
     }
 
-    public int update(Size size){
-        return sizeMapper.update(size);
+    public int updateSize(Size size){
+        Size oriSize = sizeMapper.queryByName(size.getSizeName());
+        if(oriSize == null || oriSize.getId() == size.getId());
+            return sizeMapper.update(size);
     }
 
-    public int delById(List<Integer> ids){
-        return sizeMapper.delById(ids);
+    public int delSize(int id){
+        return sizeMapper.delById(id);
     }
+
 }

@@ -1,33 +1,18 @@
 package com.shoes.scarecrow.web.controller;
 
 import com.shoes.scarecrow.persistence.domain.User;
-<<<<<<< HEAD
 import com.shoes.scarecrow.persistence.service.UserService;
 import com.shoes.scarecrow.web.model.Stock;
 import org.apache.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.*;
+import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.multipart.MultipartFile;
 
-=======
-import com.shoes.scarecrow.web.model.Stock;
-import org.apache.commons.fileupload.FileItem;
-import org.apache.commons.fileupload.FileUploadException;
-import org.apache.commons.fileupload.disk.DiskFileItemFactory;
-import org.apache.commons.fileupload.servlet.ServletFileUpload;
-import org.apache.log4j.Logger;
-import org.codehaus.jackson.map.ObjectMapper;
-import org.springframework.stereotype.Controller;
-import org.springframework.stereotype.Service;
-import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.*;
-import org.springframework.web.multipart.MultipartFile;
-import org.springframework.web.servlet.ModelAndView;
-
-import javax.annotation.Resource;
->>>>>>> origin/master
 import javax.servlet.http.HttpSession;
 import java.io.File;
 import java.io.IOException;
@@ -44,11 +29,8 @@ import java.util.*;
 public class RegisterController {
     private static Logger log = Logger.getLogger(RegisterController.class);
 
-<<<<<<< HEAD
     @Autowired
     private UserService userService;
-=======
->>>>>>> origin/master
     @RequestMapping("/forward")
     public String forward(){
         return "register";
@@ -113,7 +95,6 @@ public class RegisterController {
         imgFile.renameTo(finalImgFile);
         Map<String,String> map = new HashMap<>();
         //插入数据库成功后，返回管理员微信收款二维码
-<<<<<<< HEAD
         user.setCreateTime(new Date());
         user.setUpdateTime(new Date());
         user.setCreateUser(user.getUserName());
@@ -122,8 +103,6 @@ public class RegisterController {
         user.setYn(yn);
         user.setStatus(1);
         userService.saveUser(user);
-=======
->>>>>>> origin/master
         map.put("code","true");
         String path = session.getServletContext().getRealPath("/WEB-INF/classes/images/weixin");
         String imageFile = path.substring(path.lastIndexOf("WEB-INF")) + "webwxgetmsgimg.jpeg";

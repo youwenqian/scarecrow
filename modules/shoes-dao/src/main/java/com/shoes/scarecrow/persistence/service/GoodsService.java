@@ -23,6 +23,10 @@ public class GoodsService {
         return goodsMapper.insert(goods);
     }
 
+    public int saveGoods(Goods goods, Integer goodsSize){
+        return goodsMapper.insert(goods);
+    }
+
     public List<Goods> queryByCondition(GoodsCondition condition){
         return goodsMapper.queryByCondition(condition);
     }
