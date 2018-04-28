@@ -143,4 +143,28 @@
       </if>
     </trim>
   </insert>
+  <select id="queryCountByCondition" parameterType="com.shoes.scarecrow.persistence.domain.GoodsCondition" resultType="java.lang.Integer">
+    select count(*) from goods where  1=1
+    <if test="userId != null">
+      and user_Id=#{userId,jdbcType=INTEGER}
+    </if>
+  </select>
+  <select id="queryByCondition" parameterType="com.shoes.scarecrow.persistence.domain.GoodsCondition" resultMap="BaseResultMap">
+    select * from goods where  1=1
+    <if test="userId != null">
+     and user_Id=#{userId,jdbcType=INTEGER}
+  </if>
+    <if test="goodsClass != null">
+      and goods_class=#{goodsClass,jdbcType=INTEGER}
+    </if>
+    <if test="keyword != null">
+      and keyword=#{keyword,jdbcType=INTEGER}
+    </if>
+    <if test="goodsName != null">
+      and goodsName=#{goodsName,jdbcType=INTEGER}
+    </if>
+    <if test="brandId != null">
+      and brand_id=#{brandId,jdbcType=INTEGER}
+    </if>
+  </select>
 </mapper>

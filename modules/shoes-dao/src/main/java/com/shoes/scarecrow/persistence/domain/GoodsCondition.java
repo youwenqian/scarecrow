@@ -28,4 +28,7 @@ public class GoodsCondition extends BaseCondition implements Serializable {
 
     private Integer status;
 
+    private Integer sizeId;
+
+    private Integer colorId;
 }

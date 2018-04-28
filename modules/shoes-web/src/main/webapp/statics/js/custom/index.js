@@ -38,7 +38,6 @@ $('#login-button').click(function (event) {
         url:"index/login",
         data: formData,
         success: function(data){
-            var data = $.parseJSON(data);
             if(data.flag == true){
                 $('form').fadeOut(500);
                 $('.wrapper').addClass('form-success');
