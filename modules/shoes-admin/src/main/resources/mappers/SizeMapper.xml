@@ -1,0 +1,74 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.shoes.scarecrow.persistence.mappers.SizeMapper">
+  <resultMap id="BaseResultMap" type="com.shoes.scarecrow.persistence.domain.Size">
+    <result column="id" jdbcType="INTEGER" property="id" />
+    <result column="name" jdbcType="VARCHAR" property="name" />
+    <result column="remark" jdbcType="VARCHAR" property="remark" />
+  </resultMap>
+
+  <sql id="tableName">`size`</sql>
+  <sql id="columns">id, name, remark</sql>
+
+  <insert id="insert" parameterType="com.shoes.scarecrow.persistence.domain.Size">
+    insert into <include refid="tableName" /> (<include refid="columns"/>)
+    values (#{id,jdbcType=INTEGER}, #{name,jdbcType=VARCHAR}, #{remark,jdbcType=VARCHAR}
+    )
+  </insert>
+
+  <sql id="sqlWhere">
+    <if test="name != null">
+      and name = #{name}
+    </if>
+  </sql>
+
+  <select id="queryByCondition" parameterType="java.util.Map" resultMap="BaseResultMap">
+    SELECT <include refid="columns" />
+    FROM <include refid="tableName" />
+    WHERE 1=1
+    <include refid="sqlWhere" />
+    ORDER BY id DESC
+    limit #{startRow},#{pageSize}
+  </select>
+
+  <select id="queryCountByCondition" parameterType="java.util.Map" resultType="int">
+    SELECT
+    count(1)
+    FROM <include refid="tableName" />
+    WHERE 1=1
+    <include refid="sqlWhere" />
+  </select>
+
+  <select id="queryByName" resultMap="BaseResultMap" parameterType="java.lang.String">
+    SELECT <include refid="columns" />
+    FROM <include refid="tableName" />
+    WHERE name=#{name}
+  </select>
+
+  <select id="queryById" resultMap="BaseResultMap" parameterType="int">
+    SELECT <include refid="columns" />
+    FROM <include refid="tableName" />
+    WHERE id=#{id}
+  </select>
+
+  <update id="update" parameterType="com.shoes.scarecrow.persistence.domain.Size" >
+    UPDATE <include refid="tableName" /> SET name=#{name},remark=#{remark}
+    WHERE  id = #{id}
+  </update>
+
+  <delete id="delById" parameterType="java.util.List" >
+    DELETE FROM  <include refid="tableName" />
+    WHERE id in
+    <foreach collection="ids" item="id" index="index"
+             open="(" close=")" separator=",">
+      #{id}
+    </foreach>
+  </delete>
+
+
+
+
+
+
+
+</mapper>

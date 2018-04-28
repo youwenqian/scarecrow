@@ -1,0 +1,139 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.shoes.scarecrow.persistence.mappers.StockFlowMapper">
+  <resultMap id="BaseResultMap" type="com.shoes.scarecrow.persistence.domain.StockFlow">
+    <result column="id" jdbcType="INTEGER" property="id" />
+    <result column="user_id" jdbcType="INTEGER" property="userId" />
+    <result column="stock_id" jdbcType="INTEGER" property="stockId" />
+    <result column="goods_id" jdbcType="INTEGER" property="goodsId" />
+    <result column="goods_extend_id" jdbcType="INTEGER" property="goodsExtendId" />
+    <result column="batch_no" jdbcType="VARCHAR" property="batchNo" />
+    <result column="flow_type" jdbcType="VARCHAR" property="flowType" />
+    <result column="num" jdbcType="DECIMAL" property="num" />
+    <result column="price" jdbcType="DOUBLE" property="price" />
+    <result column="stock_address" jdbcType="VARCHAR" property="stockAddress" />
+    <result column="stock_date" jdbcType="TIMESTAMP" property="stockDate" />
+    <result column="create_time" jdbcType="TIMESTAMP" property="createTime" />
+    <result column="create_user" jdbcType="VARCHAR" property="createUser" />
+    <result column="update_time" jdbcType="TIMESTAMP" property="updateTime" />
+    <result column="update_user" jdbcType="VARCHAR" property="updateUser" />
+    <result column="remark" jdbcType="VARCHAR" property="remark" />
+  </resultMap>
+  <insert id="insert" parameterType="com.shoes.scarecrow.persistence.domain.StockFlow">
+    insert into stock_flow (id, user_id, stock_id, 
+      goods_id, goods_extend_id, batch_no, 
+      flow_type, num, price, 
+      stock_address, stock_date, create_time, 
+      create_user, update_time, update_user, 
+      remark)
+    values (#{id,jdbcType=INTEGER}, #{userId,jdbcType=INTEGER}, #{stockId,jdbcType=INTEGER}, 
+      #{goodsId,jdbcType=INTEGER}, #{goodsExtendId,jdbcType=INTEGER}, #{batchNo,jdbcType=VARCHAR}, 
+      #{flowType,jdbcType=VARCHAR}, #{num,jdbcType=DECIMAL}, #{price,jdbcType=DOUBLE}, 
+      #{stockAddress,jdbcType=VARCHAR}, #{stockDate,jdbcType=TIMESTAMP}, #{createTime,jdbcType=TIMESTAMP}, 
+      #{createUser,jdbcType=VARCHAR}, #{updateTime,jdbcType=TIMESTAMP}, #{updateUser,jdbcType=VARCHAR}, 
+      #{remark,jdbcType=VARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="com.shoes.scarecrow.persistence.domain.StockFlow">
+    insert into stock_flow
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        id,
+      </if>
+      <if test="userId != null">
+        user_id,
+      </if>
+      <if test="stockId != null">
+        stock_id,
+      </if>
+      <if test="goodsId != null">
+        goods_id,
+      </if>
+      <if test="goodsExtendId != null">
+        goods_extend_id,
+      </if>
+      <if test="batchNo != null">
+        batch_no,
+      </if>
+      <if test="flowType != null">
+        flow_type,
+      </if>
+      <if test="num != null">
+        num,
+      </if>
+      <if test="price != null">
+        price,
+      </if>
+      <if test="stockAddress != null">
+        stock_address,
+      </if>
+      <if test="stockDate != null">
+        stock_date,
+      </if>
+      <if test="createTime != null">
+        create_time,
+      </if>
+      <if test="createUser != null">
+        create_user,
+      </if>
+      <if test="updateTime != null">
+        update_time,
+      </if>
+      <if test="updateUser != null">
+        update_user,
+      </if>
+      <if test="remark != null">
+        remark,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        #{id,jdbcType=INTEGER},
+      </if>
+      <if test="userId != null">
+        #{userId,jdbcType=INTEGER},
+      </if>
+      <if test="stockId != null">
+        #{stockId,jdbcType=INTEGER},
+      </if>
+      <if test="goodsId != null">
+        #{goodsId,jdbcType=INTEGER},
+      </if>
+      <if test="goodsExtendId != null">
+        #{goodsExtendId,jdbcType=INTEGER},
+      </if>
+      <if test="batchNo != null">
+        #{batchNo,jdbcType=VARCHAR},
+      </if>
+      <if test="flowType != null">
+        #{flowType,jdbcType=VARCHAR},
+      </if>
+      <if test="num != null">
+        #{num,jdbcType=DECIMAL},
+      </if>
+      <if test="price != null">
+        #{price,jdbcType=DOUBLE},
+      </if>
+      <if test="stockAddress != null">
+        #{stockAddress,jdbcType=VARCHAR},
+      </if>
+      <if test="stockDate != null">
+        #{stockDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="createTime != null">
+        #{createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="createUser != null">
+        #{createUser,jdbcType=VARCHAR},
+      </if>
+      <if test="updateTime != null">
+        #{updateTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updateUser != null">
+        #{updateUser,jdbcType=VARCHAR},
+      </if>
+      <if test="remark != null">
+        #{remark,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+</mapper>

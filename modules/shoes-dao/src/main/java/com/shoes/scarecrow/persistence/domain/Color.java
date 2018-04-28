@@ -8,6 +8,6 @@ public class Color {
 
     private String name;
 
-    private String desc;
+    private String remark;
 
 }

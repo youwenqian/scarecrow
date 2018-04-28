@@ -16,6 +16,8 @@ public class BrandCondition extends BaseCondition implements Serializable{
 
     private static final long serialVersionUID = -1380792238465131203L;
 
+    private Date startTime;
+
     private Integer id;
 
     private String name;

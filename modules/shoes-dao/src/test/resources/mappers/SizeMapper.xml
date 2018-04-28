@@ -3,13 +3,13 @@
 <mapper namespace="com.shoes.scarecrow.persistence.mappers.SizeMapper">
   <resultMap id="BaseResultMap" type="com.shoes.scarecrow.persistence.domain.Size">
     <result column="id" jdbcType="INTEGER" property="id" />
-    <result column="size_name" jdbcType="VARCHAR" property="sizeName" />
-    <result column="desc" jdbcType="VARCHAR" property="desc" />
+    <result column="name" jdbcType="VARCHAR" property="name" />
+    <result column="remark" jdbcType="VARCHAR" property="remark" />
   </resultMap>
   <insert id="insert" parameterType="com.shoes.scarecrow.persistence.domain.Size">
-    insert into size (id, size_name, desc
+    insert into size (id, name, remark
       )
-    values (#{id,jdbcType=INTEGER}, #{sizeName,jdbcType=VARCHAR}, #{desc,jdbcType=VARCHAR}
+    values (#{id,jdbcType=INTEGER}, #{name,jdbcType=VARCHAR}, #{remark,jdbcType=VARCHAR}
       )
   </insert>
   <insert id="insertSelective" parameterType="com.shoes.scarecrow.persistence.domain.Size">
@@ -18,22 +18,22 @@
       <if test="id != null">
         id,
       </if>
-      <if test="sizeName != null">
-        size_name,
+      <if test="name != null">
+        name,
       </if>
-      <if test="desc != null">
-        desc,
+      <if test="remark != null">
+        remark,
       </if>
     </trim>
     <trim prefix="values (" suffix=")" suffixOverrides=",">
       <if test="id != null">
         #{id,jdbcType=INTEGER},
       </if>
-      <if test="sizeName != null">
-        #{sizeName,jdbcType=VARCHAR},
+      <if test="name != null">
+        #{name,jdbcType=VARCHAR},
       </if>
-      <if test="desc != null">
-        #{desc,jdbcType=VARCHAR},
+      <if test="remark != null">
+        #{remark,jdbcType=VARCHAR},
       </if>
     </trim>
   </insert>

@@ -4,13 +4,13 @@
 <html>
 <head>
   <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-  <script type="text/javascript" src="/statics/js/jQuery/jQuery-2.1.4.min.js"></script>
+  <script type="text/javascript" src="${root}/statics/js/jQuery/jQuery-2.1.4.min.js"></script>
   <title>后台管理系统</title>
 </head>
 <body>
 <script type="text/javascript">
     $(document).ready(function(){
-        window.location.href = "toLogin?rd=" + Math.random();
+        window.location.href = "${root}index?rd=" + Math.random();
     });
 </script>
 </body>
