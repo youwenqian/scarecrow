@@ -112,7 +112,7 @@ public class IndexController {
         //如果文件不为空，写入上传路径
 
         //上传文件路径
-        String path = request.getServletContext().getRealPath("/images/weixin/");//"/home/youwenqian/image/";//
+        String path = request.getSession().getServletContext().getRealPath("/images/weixin/");//"/home/youwenqian/image/";//
         //上传文件名
         upload.setSizeMax(4194304); // 设置最大文件尺寸，这里是4MB
         File tempFile = new File(path,name);
