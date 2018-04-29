@@ -37,6 +37,7 @@ $('#login-button').click(function (event) {
         type:'POST',
         url:"index/login",
         data: formData,
+        dataType:'json',
         success: function(data){
             if(data.flag == true){
                 $('form').fadeOut(500);
