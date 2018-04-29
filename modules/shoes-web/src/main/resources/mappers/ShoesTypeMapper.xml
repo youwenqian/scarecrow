@@ -9,6 +9,50 @@
     insert into shoes_type (id, type_name)
     values (#{id,jdbcType=INTEGER}, #{typeName,jdbcType=VARCHAR})
   </insert>
+
+  <select id="queryCountByCondition" parameterType="com.shoes.scarecrow.persistence.domain.TypeCondition" resultType="java.lang.Integer">
+    select count(*) from shoes_type where 1=1
+    <if test="id !=null">
+      and id = #{id,jdbcType=INTEGER}
+    </if>
+    <if test="typeName !=null">
+      and type_name = #{typeName,jdbcType=INTEGER}
+    </if>
+  </select>
+  <select id="queryByCondition" parameterType="com.shoes.scarecrow.persistence.domain.TypeCondition" resultMap="BaseResultMap">
+    select t.* from
+    (select * from shoes_type where 1=1
+    <if test="id !=null">
+      and id = #{id,jdbcType=INTEGER}
+    </if>
+    <if test="typeName !=null">
+      and type_name = #{typeName,jdbcType=VARCHAR}
+    </if>
+    )t limit #{startRow},#{pageSize}
+  </select>
+
+  <select id="queryById" parameterType="java.lang.Integer">
+    select * from shoes_type where id=#{id,jdbcType=INTEGER}
+  </select>
+  <select id="queryByName"  resultMap="BaseResultMap">
+    select * from shoes_type where 1=1
+    <if test="name !=null">
+      and type_name=#{name,jdbcType=VARCHAR}
+    </if>
+  </select>
+  <delete id="delById" parameterType="java.lang.Integer" >
+    delete from shoes_type where id = #{id}
+  </delete>
+  <update id="update" parameterType="com.shoes.scarecrow.persistence.domain.ShoesType" >
+    update shoes_type
+    <set>
+      <if test="typeName !=null">
+        type_name=#{typeName,jdbcType=VARCHAR}
+      </if>
+    </set>
+    where id=#{id,jdbcType=INTEGER}
+  </update>
+
   <insert id="insertSelective" parameterType="com.shoes.scarecrow.persistence.domain.ShoesType">
     insert into shoes_type
     <trim prefix="(" suffix=")" suffixOverrides=",">
