@@ -9,12 +9,12 @@ import org.springframework.web.bind.annotation.RequestMapping;
  * Create with IntelliJ IDEA
  * Create by zz
  * Date 18-4-4
- * Time 上午2:03
+ * Time 上午1:54
  */
 @Controller
-public class manageController {
-    Logger log = Logger.getLogger(manageController.class);
-    @RequestMapping("/manage/{path}")
+public class MerchantController {
+    Logger log = Logger.getLogger(MerchantController.class);
+    @RequestMapping("/merchant/{path}")
     public String dispathchPath(@PathVariable("path") String path){
         log.info("跳转到"+path);
         return path;
