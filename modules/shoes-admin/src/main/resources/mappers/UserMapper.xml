@@ -109,7 +109,7 @@
   </select>
 
   <select id="getUserByName" parameterType="java.util.Map" resultMap="BaseResultMap">
-    select * FROM  <include refid="tableName" /> where user_name=#{userName} AND  password=#{password}
+    select * FROM  <include refid="tableName" /> where user_name=#{userName} AND  password=#{password} and user_type=#{userType}
   </select>
   <select id="getUserById" parameterType="java.util.Map" resultMap="BaseResultMap">
     select * FROM  <include refid="tableName" /> where id=#{id}

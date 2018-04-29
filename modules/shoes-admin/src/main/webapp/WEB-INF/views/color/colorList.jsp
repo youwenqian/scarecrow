@@ -63,7 +63,7 @@
         </thead>
         <tbody id="dataList">
         <c:forEach items="${colors}" var="color" varStatus="num">
-            <tr>
+            <tr class="result">
                 <td>
                     <div class="layui-unselect layui-form-checkbox" lay-skin="primary" data-id='${color.id}'><i
                             class="layui-icon">&#xe605;</i></div>
@@ -82,18 +82,78 @@
         </c:forEach>
         </tbody>
     </table>
-    <div class="page" style="display: none;">
-        <div>
-            <a class="prev" href="">&lt;&lt;</a>
-            <a class="num" href="">1</a>
-            <span class="current">2</span>
-            <a class="num" href="">3</a>
-            <a class="num" href="">489</a>
-            <a class="next" href="">&gt;&gt;</a>
-        </div>
+    <div class="pagination" id="pagination" >
     </div>
 
 </div>
-<div class="ui_tb_h30"><div id="pagination" class="pagination"></div></div>
 </body>
+
+    <!--分页-->
+    <link rel="stylesheet" href="${root}statics/css/simplePagination/simplePagination.css">
+    <script type="text/javascript" src="${root}statics/js/simplePagination/jquery.simplePagination.js"></script>
+    <script>
+    var page_index;
+    var itemsOnPage = 10;
+    $(function() {
+    $("#pagination").pagination({
+    items: ${count},
+    itemsOnPage: itemsOnPage,
+    cssStyle: 'compact-theme', //light-theme，dark-theme和compact-theme。
+    onInit: changePage,
+    onPageClick: changePage
+    });
+    });
+
+    function changePage(){
+    page_index = $("#pagination").pagination('getCurrentPage') -1;
+    $("#dataList .result").hide();
+    for(var i = page_index * itemsOnPage; i < page_index * itemsOnPage + itemsOnPage; i++){
+    $("#dataList .result:eq(" + i + ")").show();
+    }
+    }
+
+    /*用户-删除*/
+    function del(obj,id){
+    layer.confirm('确认要删除吗？',function(index){
+    $.ajax({
+    url:"${root}color/delColor",
+    type: "POST",
+    data:{"id":id},
+    success: function (data) {
+    if(data == 'success'){
+    $(obj).parents("tr").remove();
+    layer.msg('已删除!',{icon:1,time:1000});
+    }else{
+    layer.alert("删除失败", {icon: 6},function () {
+    layer.close(index);
+    });
+    }
+    }
+
+    });
+    });
+    }
+
+    function delAll () {
+
+    var data = tableCheck.getData();
+    layer.confirm('确认要删除吗？',function(index){
+    $.ajax({
+    url:"${root}color/batchDel",
+    type: "POST",
+    data:{"ids":data.join(",")},
+    success: function (data) {
+    if(data == 'success'){
+    $(".layui-form-checked").not('.header').parents('tr').remove();
+    layer.msg('已删除!',{icon:1,time:1000});
+    }else{
+    layer.alert("删除失败", {icon: 6},function () {
+    layer.close(index);
+    });
+    }
+    }
+    });
+    });
+    }
+    </script>
     </html>

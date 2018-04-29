@@ -1,5 +1,6 @@
 package com.shoes.scarecrow.persistence.service;
 
+import com.shoes.scarecrow.common.enums.UserType;
 import com.shoes.scarecrow.persistence.domain.User;
 import com.shoes.scarecrow.persistence.mappers.UserMapper;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -45,9 +46,13 @@ public class UserService {
         return userMapper.getCountByCondition(param);
     }
 
-    public User getUserByName(String name, String password){
-        return userMapper.getUserByName(name, password);
+    public User getUser(String name, String password){
+        return userMapper.getUserByName(name, password, UserType.BUSINESS.getKey());
     }
+    public User getUserByName(String name, String password, int type){
+        return userMapper.getUserByName(name, password, type);
+    }
+
 
     public User getUserById(Long id){
         return userMapper.getUserById(id);

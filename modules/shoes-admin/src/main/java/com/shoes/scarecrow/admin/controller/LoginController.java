@@ -1,6 +1,7 @@
 package com.shoes.scarecrow.admin.controller;
 
 import com.shoes.scarecrow.admin.common.LoginContext;
+import com.shoes.scarecrow.common.enums.UserType;
 import com.shoes.scarecrow.common.utils.Constants;
 import com.shoes.scarecrow.common.utils.MD5;
 import com.shoes.scarecrow.persistence.domain.User;
@@ -44,7 +45,7 @@ public class LoginController {
         long tid = System.nanoTime();
         LOGGER.info("tid:{} 登录 userName:{} ", tid, userName);
         try{
-            User user = userService.getUserByName(userName, MD5.excute(password));
+            User user = userService.getUserByName(userName, MD5.excute(password), UserType.ADMIN.getKey());
             if(user == null || user.getStatus() == 0){
                 request.setAttribute("code", -905);
                 return "login";
