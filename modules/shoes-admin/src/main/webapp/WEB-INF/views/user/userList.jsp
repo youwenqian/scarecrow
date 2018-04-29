@@ -24,8 +24,6 @@
     <script type="text/javascript" src="${root}statics/lib/layui/layui.js" charset="utf-8"></script>
     <script type="text/javascript" src="${root}statics/js/xadmin.js"></script>
     <script type="text/javascript" src="${root}statics/admin/userList.js"></script>
-    <script type="text/javascript" src="${root}statics/js/simplePagination/jquery.simplePagination.js"></script>
-
 
     <!--[if lt IE 9]>
     <script src="https://cdn.staticfile.org/html5shiv/r29/html5.min.js"></script>
@@ -33,17 +31,7 @@
     <![endif]-->
     <!-- 让IE8/9支持媒体查询，从而兼容栅格 -->
 
-    <script>
-        $(function () {
-            var isPayment = $('#isPayment');
-            console.log(isPayment);
-            if(isPayment == 0){
-                $('#isPayment').find('option:eq(1)').attr('selected','selected');
-            }else if(isPayment == 1){
-                $('#isPayment').find('option:eq(2)').attr('selected','selected');
-            }
-        })
-    </script>
+
 </head>
 
 <body>
@@ -97,7 +85,7 @@
         </thead>
         <tbody id="dataList">
         <c:forEach items="${users}" var="user" varStatus="num">
-            <tr>
+            <tr class="result">
                 <td>
                     <div class="layui-unselect layui-form-checkbox" lay-skin="primary" data-id='${user.id}'><i
                             class="layui-icon">&#xe605;</i></div>
@@ -150,18 +138,101 @@
         </c:forEach>
         </tbody>
     </table>
-    <div class="page" style="display: none;">
-        <div>
-            <a class="prev" href="">&lt;&lt;</a>
-            <a class="num" href="">1</a>
-            <span class="current">2</span>
-            <a class="num" href="">3</a>
-            <a class="num" href="">489</a>
-            <a class="next" href="">&gt;&gt;</a>
-        </div>
+    <div class="pagination" id="pagination" >
     </div>
-
 </div>
-<div class="ui_tb_h30"><div id="pagination" class="pagination"></div></div>
 </body>
+<!--分页-->
+<link rel="stylesheet" href="${root}statics/css/simplePagination/simplePagination.css">
+<script type="text/javascript" src="${root}statics/js/simplePagination/jquery.simplePagination.js"></script>
+<script>
+    var page_index;
+    var itemsOnPage = 10;
+    $(function() {
+        $("#pagination").pagination({
+            items: ${count},
+            itemsOnPage: itemsOnPage,
+            cssStyle: 'compact-theme',  //light-theme，dark-theme和compact-theme。
+            onInit: changePage,
+            onPageClick: changePage
+        });
+    });
+
+    function changePage(){
+        page_index = $("#pagination").pagination('getCurrentPage') -1;
+        $("#dataList .result").hide();
+        for(var i = page_index * itemsOnPage; i < page_index * itemsOnPage + itemsOnPage; i++){
+            $("#dataList .result:eq(" + i + ")").show();
+        }
+    }
+    /*用户-停用*/
+    function member_stop(obj,id){
+        layer.confirm('确认要停用吗？',function(index){
+
+            if($(obj).attr('title')=='启用'){
+
+                //发异步把用户状态进行更改
+                $(obj).attr('title','停用')
+                $(obj).find('i').html('&#xe62f;');
+
+                $(obj).parents("tr").find(".td-status").find('span').addClass('layui-btn-disabled').html('已停用');
+                layer.msg('已停用!',{icon: 5,time:1000});
+
+            }else{
+                $(obj).attr('title','启用')
+                $(obj).find('i').html('&#xe601;');
+
+                $(obj).parents("tr").find(".td-status").find('span').removeClass('layui-btn-disabled').html('已启用');
+                layer.msg('已启用!',{icon: 5,time:1000});
+            }
+
+        });
+    }
+
+    /*用户-删除*/
+    function delUser(obj,id){
+        layer.confirm('确认要删除吗？',function(index){
+            $.ajax({
+                url:"${root}user/delUser",
+                type: "POST",
+                data:{"id":id},
+                success: function (data) {
+                    if(data == 'success'){
+                        $(obj).parents("tr").remove();
+                        layer.msg('已删除!',{icon:1,time:1000});
+                    }else{
+                        layer.alert("删除失败", {icon: 6},function () {
+                            layer.close(index);
+                        });
+                    }
+                }
+
+            });
+        });
+    }
+
+    function delAllUser () {
+
+        var data = tableCheck.getData();
+        layer.confirm('确认要删除吗？',function(index){
+            $.ajax({
+                url:"${root}user/batchDelUser",
+                type: "POST",
+                data:{"ids":data.join(",")},
+                success: function (data) {
+                    if(data == 'success'){
+                        $(".layui-form-checked").not('.header').parents('tr').remove();
+                        layer.msg('已删除!',{icon:1,time:1000});
+                    }else{
+                        layer.alert("删除失败", {icon: 6},function () {
+                            layer.close(index);
+                        });
+                    }
+                }
+            });
+        });
+    }
+</script>
     </html>
+
+

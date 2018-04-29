@@ -16,7 +16,7 @@ public interface UserMapper {
 
     int getCountByCondition(Map<String, Object> param);
 
-    User getUserByName(@Param("userName") String name, @Param("password") String password);
+    User getUserByName(@Param("userName") String name, @Param("password") String password, @Param("userType") int type);
 
     User getUserById(@Param("id") Long id);
 
