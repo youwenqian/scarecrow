@@ -23,6 +23,55 @@
       #{updateUser,jdbcType=VARCHAR}, #{status,jdbcType=INTEGER}, #{yn,jdbcType=INTEGER}, 
       #{version,jdbcType=INTEGER})
   </insert>
+  <select id="queryById" parameterType="java.lang.Integer">
+    select * from brand where id=#{id,jdbcType=INTEGER}
+  </select>
+  <select id="queryCountByCondition" parameterType="com.shoes.scarecrow.persistence.domain.BrandCondition" resultType="java.lang.Integer">
+    select count(*) from brand where 1=1
+    <if test="id != null">
+      and id = #{id,jdbcType= INTEGER}
+    </if>
+    <if test="name != null">
+      and name = #{name,jdbcType= VARCHAR}
+    </if>
+  </select>
+  <select id="queryByCondition" parameterType="com.shoes.scarecrow.persistence.domain.BrandCondition" resultMap="BaseResultMap">
+    select t.* from
+    (select * from brand  where 1=1
+    <if test="id != null">
+      and id = #{id,jdbcType= INTEGER}
+    </if>
+    <if test="name != null">
+      and name = #{name,jdbcType= VARCHAR}
+    </if>)t limit #{startRow},#{pageSize}
+  </select>
+  <select id="queryByName" resultMap="BaseResultMap">
+    select * from brand where 1=1
+    <if test="name !=null">
+      and name=#{name,jdbcType=VARCHAR}
+    </if>
+  </select>
+  <delete id="delById" parameterType="java.lang.Integer" >
+    delete from brand where id = #{id}
+  </delete>
+  <update id="update" parameterType="com.shoes.scarecrow.persistence.domain.Brand" >
+    update brand
+    <set>
+      <if test="name !=null">
+        name=#{name,jdbcType=VARCHAR},
+      </if>
+      <if test="remark !=null">
+        remark=#{remark,jdbcType=VARCHAR},
+      </if>
+      <if test="updateTime !=null">
+        update_time=#{updateTime,jdbcType=DATE},
+      </if>
+      <if test="updateUser !=null">
+        update_user=#{updateUser,jdbcType=VARCHAR}
+      </if>
+    </set>
+    where id=#{id,jdbcType=INTEGER}
+  </update>
   <insert id="insertSelective" parameterType="com.shoes.scarecrow.persistence.domain.Brand">
     insert into brand
     <trim prefix="(" suffix=")" suffixOverrides=",">

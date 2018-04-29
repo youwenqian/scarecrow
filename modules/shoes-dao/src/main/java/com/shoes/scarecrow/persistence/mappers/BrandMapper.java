@@ -21,5 +21,7 @@ public interface BrandMapper {
 
     int update(Brand record);
 
+    int delById(int id);
+
     int delById(@Param("ids") List<Integer> ids, @Param("updateUser") String updateUser);
 }
