@@ -40,9 +40,66 @@
       #{updateTime,jdbcType=TIMESTAMP}, #{createUser,jdbcType=VARCHAR}, #{updateUser,jdbcType=VARCHAR}, 
       #{remark,jdbcType=VARCHAR}, #{yn,jdbcType=TINYINT}, #{status,jdbcType=INTEGER})
   </insert>
-  <select id="getUserByNameAndPassword" resultMap="BaseResultMap">
+  <select id="getUserByNameAndPassword" resultMap="BaseResultMap" >
     select * from user where user_name=#{userName} and password=#{passWord}
   </select>
+
+  <select id="queryById" parameterType="java.lang.Integer">
+    select * from brand where id=#{id,jdbcType=INTEGER}
+  </select>
+  <select id="queryCountByCondition" parameterType="com.shoes.scarecrow.persistence.domain.UserCondition" resultType="java.lang.Integer">
+    select count(*) from user where 1=1
+    <if test="userName != null">
+      and user_name = #{userName,jdbcType= INTEGER}
+    </if>
+    <if test="nickName != null">
+      and nick_name = #{nickName,jdbcType= VARCHAR}
+    </if>
+    <if test="taobaoName != null">
+      and taobao_name = #{taobaoName,jdbcType= VARCHAR}
+    </if>
+    <if test="stockId != null">
+      and stock_id = #{stockId,jdbcType= VARCHAR}
+    </if>
+  </select>
+  <select id="queryByCondition" parameterType="com.shoes.scarecrow.persistence.domain.UserCondition" resultMap="BaseResultMap">
+    select t.* from
+    (select * from user  where 1=1
+    <if test="userName != null">
+      and user_name = #{userName,jdbcType= INTEGER}
+    </if>
+    <if test="nickName != null">
+      and nick_name = #{nickName,jdbcType= VARCHAR}
+    </if>
+    <if test="taobaoName != null">
+      and taobao_name = #{taobaoName,jdbcType= VARCHAR}
+    </if>
+    <if test="stockId != null">
+      and stock_id = #{stockId,jdbcType= VARCHAR}
+    </if>)t limit #{startRow},#{pageSize}
+  </select>
+  <select id="queryByUserName" resultMap="BaseResultMap">
+    select * from user where 1=1
+    <if test="userName !=null">
+      and user_name=#{userName,jdbcType=VARCHAR}
+    </if>
+  </select>
+  <delete id="delById" parameterType="java.lang.Integer" >
+    delete from user where id = #{id}
+  </delete>
+  <update id="update" parameterType="com.shoes.scarecrow.persistence.domain.User" >
+    update user
+    <set>
+      <if test="password !=null">
+        password=#{password,jdbcType=VARCHAR},
+      </if>
+      <if test="confirmPassword !=null">
+        confirm_password=#{confirmPassword,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where id=#{id,jdbcType=INTEGER}
+  </update>
+
   <insert id="insertSelective" parameterType="com.shoes.scarecrow.persistence.domain.User">
     insert into user
     <trim prefix="(" suffix=")" suffixOverrides=",">

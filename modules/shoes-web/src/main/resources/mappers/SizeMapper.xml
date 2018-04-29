@@ -3,38 +3,58 @@
 <mapper namespace="com.shoes.scarecrow.persistence.mappers.SizeMapper">
   <resultMap id="BaseResultMap" type="com.shoes.scarecrow.persistence.domain.Size">
     <result column="id" jdbcType="INTEGER" property="id" />
-    <result column="size_name" jdbcType="VARCHAR" property="sizeName" />
-    <result column="desc" jdbcType="VARCHAR" property="desc" />
+    <result column="name" jdbcType="VARCHAR" property="sizeName" />
+    <result column="remark" jdbcType="VARCHAR" property="desc" />
   </resultMap>
   <insert id="insert" parameterType="com.shoes.scarecrow.persistence.domain.Size">
-    insert into size (id, size_name, desc
-      )
+    insert into size (id, name, remark
+    )
     values (#{id,jdbcType=INTEGER}, #{sizeName,jdbcType=VARCHAR}, #{desc,jdbcType=VARCHAR}
-      )
+    )
   </insert>
-  <insert id="insertSelective" parameterType="com.shoes.scarecrow.persistence.domain.Size">
-    insert into size
-    <trim prefix="(" suffix=")" suffixOverrides=",">
-      <if test="id != null">
-        id,
+  <select id="queryCountByCondition" parameterType="com.shoes.scarecrow.persistence.domain.SizeCondition" resultType="java.lang.Integer">
+    select count(*) from size where 1=1
+    <if test="id !=null">
+      and id = #{id,jdbcType=INTEGER}
+    </if>
+    <if test="sizeName !=null">
+      and name = #{sizeName,jdbcType=INTEGER}
+    </if>
+  </select>
+  <select id="queryByCondition" parameterType="com.shoes.scarecrow.persistence.domain.SizeCondition" resultMap="BaseResultMap">
+    select t.* from
+    (select * from size where 1=1
+    <if test="id !=null">
+      and id = #{id,jdbcType=INTEGER}
+    </if>
+    <if test="sizeName !=null">
+      and name = #{sizeName,jdbcType=VARCHAR}
+    </if>
+    )t limit #{startRow},#{pageSize}
+  </select>
+
+  <select id="queryById" parameterType="java.lang.Integer" >
+    select * from size where id=#{id,jdbcType=INTEGER}
+  </select>
+  <select id="queryByName" resultMap="BaseResultMap">
+    select * from size where 1=1
+    <if test="sizeName !=null">
+      and name=#{sizeName,jdbcType=VARCHAR}
+    </if>
+  </select>
+  <delete id="delById" parameterType="java.lang.Integer" >
+    delete from size where id = #{id}
+  </delete>
+  <update id="update" parameterType="com.shoes.scarecrow.persistence.domain.Size" >
+    update size
+    <set>
+      <if test="sizeName !=null">
+        name=#{sizeName,jdbcType=VARCHAR},
       </if>
-      <if test="sizeName != null">
-        size_name,
+      <if test="desc !=null">
+        remark=#{desc,jdbcType=VARCHAR}
       </if>
-      <if test="desc != null">
-        desc,
-      </if>
-    </trim>
-    <trim prefix="values (" suffix=")" suffixOverrides=",">
-      <if test="id != null">
-        #{id,jdbcType=INTEGER},
-      </if>
-      <if test="sizeName != null">
-        #{sizeName,jdbcType=VARCHAR},
-      </if>
-      <if test="desc != null">
-        #{desc,jdbcType=VARCHAR},
-      </if>
-    </trim>
-  </insert>
+    </set>
+    where id=#{id,jdbcType=INTEGER}
+  </update>
 </mapper>
