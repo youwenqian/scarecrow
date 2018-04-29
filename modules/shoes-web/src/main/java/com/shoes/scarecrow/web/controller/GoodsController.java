@@ -1,5 +1,6 @@
 package com.shoes.scarecrow.web.controller;
 
+import com.shoes.scarecrow.persistence.domain.Brand;
 import com.shoes.scarecrow.persistence.domain.Goods;
 import com.shoes.scarecrow.persistence.domain.GoodsCondition;
 import com.shoes.scarecrow.persistence.service.GoodsService;
@@ -14,6 +15,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 import java.io.IOException;
+import java.io.PrintWriter;
 import java.util.*;
 
 /**
@@ -46,19 +48,19 @@ public class GoodsController {
         goodsCondition.setPageSize(limit);
         int start = (page-1)*limit;
         goodsCondition.setStartRow(start);
-        List<Goods> list = goodsService.queryByCondition(goodsCondition);
+//        List<Goods> list = goodsService.queryByCondition(goodsCondition);
         ObjectMapper mapper = new ObjectMapper();
-       /* List<Map<String,Object>> list = new ArrayList<>();
+        List<Map<String,Object>> list = new ArrayList<>();
         for(int i=0;i<50;i++){
             Map<String,Object> map1 = new HashMap<String,Object>();
             map1.put("id",i);
             map1.put("userId",i);
             map1.put("price",987.98d);
             map1.put("keyword","关键字");
-            map1.put("goodsType","商品分类");
+            map1.put("goodsClass",i);
             map1.put("goodsName","商品"+i);
-            map1.put("goodsBrand","品牌"+i);
-            map1.put("goodsSize",i+"码");
+            map1.put("brandId",i);
+            map1.put("goodsSize",i);
             map1.put("goodsColor","颜色");
             map1.put("sex","男鞋");map1.put("goodsColor","颜色");
             map1.put("createTime",new Date());
@@ -69,7 +71,7 @@ public class GoodsController {
             list.add(map1);
         }
         int end = page*limit<=list.size()?page*limit:list.size();
-        List<Map<String,Object>> list2 = list.subList(start,end);*/
+        List<Map<String,Object>> list2 = list.subList(start,end);
         map.put("code","0");
         map.put("msg","");
         map.put("count",50);
@@ -101,7 +103,7 @@ public class GoodsController {
     }
     @RequestMapping("/updateGoods")
     @ResponseBody
-    public Map putGoods(Goods goods, String goodsSize, HttpSession session){
+    public Map putGoods(Goods goods,String goodsSize,HttpSession session){
         Map<String,Object> map = new HashMap<>();
         ObjectMapper objMapper = new ObjectMapper();
         try {
@@ -119,7 +121,7 @@ public class GoodsController {
     }
     @RequestMapping("/addGoods")
     @ResponseBody
-    public Map postGoods(Goods goods, String goodsSize, HttpSession session){
+    public Map postGoods(Goods goods,String goodsSize,HttpSession session){
         Map<String,Object> map = new HashMap<>();
         Integer goodSize = Integer.valueOf(goodsSize);
         ObjectMapper objMapper = new ObjectMapper();
@@ -139,7 +141,7 @@ public class GoodsController {
     }
     @RequestMapping("/getGoods")
     @ResponseBody
-    public Map getGoods(int page, int limit, Goods goods, String goodsSize, HttpSession session){
+    public Map getGoods(int page, int limit, Goods goods,String goodsSize,HttpSession session){
         Map<String,Object> map = new HashMap<>();
         ObjectMapper objMapper = new ObjectMapper();
         try {
