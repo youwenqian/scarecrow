@@ -77,7 +77,7 @@
     </div>
     <label for="remarkAdd" class="col-sm-2 control-label">备注</label>
     <div class="col-sm-4">
-        <input type="text" class="form-control" id="remarkAdd" name="reamrk" placeholder=“请输入备注”>
+        <input type="text" class="form-control" id="remarkAdd" name="remark" placeholder=“请输入备注”>
     </div>
     </div>
     <div class="form-group">

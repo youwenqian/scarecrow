@@ -2,6 +2,7 @@ package com.shoes.scarecrow.persistence.mappers;
 
 import com.shoes.scarecrow.persistence.domain.ShoesType;
 import com.shoes.scarecrow.persistence.domain.TypeCondition;
+import org.apache.ibatis.annotations.Param;
 import org.springframework.stereotype.Repository;
 
 import java.util.List;
@@ -16,7 +17,7 @@ public interface ShoesTypeMapper {
 
     ShoesType queryById(int id);
 
-    ShoesType queryByName(String name);
+    ShoesType queryByName(@Param("name") String name);
 
     int update(ShoesType record);
 

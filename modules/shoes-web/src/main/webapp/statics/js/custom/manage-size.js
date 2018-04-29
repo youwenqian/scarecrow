@@ -13,7 +13,7 @@ $(document).ready(function () {
             elem: '#table'
             ,url:'/shoes/size/allDetail'
             ,cols: [[
-                {field:'id',  title: 'ID', sort: true,align:'center',style:'display:none;'}
+                {field:'id',minWidth:'0%',width:'0%',type:'space',style:'display:none;'}
                 ,{field:'sizeName',  title: '尺码名称',align:'center'}
                 ,{field:'desc',  title: '描述', sort: true,align:'center'}
                 ,{fixed: 'right',title:'操作', width: 165, align:'center', toolbar: '#operation'}
@@ -50,8 +50,8 @@ $(document).ready(function () {
                     success: function(layero){
                         layer.setTop(layero); //重点2
                         $("#idEdit").val(data.id);
-                        $("#nameEdit").val(data.name);
-                        $("#remarkEdit").val(data.remark);
+                        $("#nameEdit").val(data.sizeName);
+                        $("#remarkEdit").val(data.desc);
                     }
                 });
             }
@@ -64,9 +64,9 @@ function search() {
         elem: '#table'
         ,url:'/shoes/size/allDetail?'+$("#searchForm").serialize()
         ,cols: [[
-            {field:'id',  title: 'ID', sort: true,align:'center',style:'display:none;'}
+            {field:'id', minWidth:'0%',width:'0%',type:'space',style:'display:none;'}
             ,{field:'sizeName',  title: '尺码名称',align:'center'}
-            ,{field:'remark',  title: '备注', sort: true,align:'center'}
+            ,{field:'desc',  title: '备注', sort: true,align:'center'}
             ,{fixed: 'right',title:'操作', width: 165, align:'center', toolbar: '#operation'}
         ]]
         ,page: {
@@ -87,18 +87,34 @@ function add() {
             layer.setTop(layero); //重点2
             $("#idAdd").val(data.id);
             $("#nameAdd").val(data.sizeName);
-            $("#remarkAdd").val(data.remark);
+            $("#remarkAdd").val(data.desc);
         }
     });
 }
 function addBtn() {
-    $.post("/shoes/size/addSize", $("#AddForm").serialize(),function (data) {
+    $.post("/shoes/size/addSize", $("#addForm").serialize(),function (data) {
         if(data.success){
             layer.msg("添加成功！", {icon: 1,time:2000});
+            table.render({
+                elem: '#table'
+                ,url:'/shoes/size/allDetail'
+                ,cols: [[
+                    {field:'id',minWidth:'0%',width:'0%',type:'space',style:'display:none;'}
+                    ,{field:'sizeName',  title: '尺码名称',align:'center'}
+                    ,{field:'desc',  title: '描述', sort: true,align:'center'}
+                    ,{fixed: 'right',title:'操作', width: 165, align:'center', toolbar: '#operation'}
+                ]]
+                ,page: {
+                    limit:pageSize,
+                    limits:[pageSize]
+                }
+                ,skin:'line'
+                ,even:true
+            });
         }else{
             layer.msg("添加失败，请联系管理员", {icon: 5,time:2000});
         }
-        layer.close(AddGoodsLayer);
+        layer.close(editGoodsLayer);
     });
 }
 
@@ -106,6 +122,22 @@ function editBtn() {
     $.post("/shoes/size/updateSize", $("#editForm").serialize(),function (data) {
         if(data.success){
             layer.msg("修改成功！", {icon: 1,time:2000});
+            table.render({
+                elem: '#table'
+                ,url:'/shoes/size/allDetail'
+                ,cols: [[
+                    {field:'id',minWidth:'0%',width:'0%',type:'space',style:'display:none;'}
+                    ,{field:'sizeName',  title: '尺码名称',align:'center'}
+                    ,{field:'desc',  title: '描述', sort: true,align:'center'}
+                    ,{fixed: 'right',title:'操作', width: 165, align:'center', toolbar: '#operation'}
+                ]]
+                ,page: {
+                    limit:pageSize,
+                    limits:[pageSize]
+                }
+                ,skin:'line'
+                ,even:true
+            });
         }else{
             layer.msg("修改失败，请联系管理员", {icon: 5,time:2000});
         }

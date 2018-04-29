@@ -2,6 +2,7 @@ package com.shoes.scarecrow.persistence.mappers;
 
 import com.shoes.scarecrow.persistence.domain.Brand;
 import com.shoes.scarecrow.persistence.domain.BrandCondition;
+import org.apache.ibatis.annotations.Param;
 import org.springframework.stereotype.Repository;
 
 import java.util.List;
@@ -18,7 +19,7 @@ public interface BrandMapper {
 
     Brand queryById(int id);
 
-    Brand queryByName(String name);
+    Brand queryByName(@Param("name") String name);
 
     int update(Brand record);
 

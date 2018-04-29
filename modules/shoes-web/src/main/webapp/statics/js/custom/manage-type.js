@@ -13,7 +13,7 @@ $(document).ready(function () {
             elem: '#table'
             ,url:'/shoes/type/allDetail'
             ,cols: [[
-                {field:'id',  title: 'ID', sort: true,align:'center',style:'display:none;'}
+                {field:'id', minWidth:'0%',width:'0%',type:'space',style:'display:none;'}
                 ,{field:'typeName',  title: '分组名称',align:'center'}
                 ,{fixed: 'right',title:'操作', width: 165, align:'center', toolbar: '#operation'}
             ]]
@@ -49,7 +49,7 @@ $(document).ready(function () {
                     success: function(layero){
                         layer.setTop(layero); //重点2
                         $("#idEdit").val(data.id);
-                        $("#nameEdit").val(data.name);
+                        $("#nameEdit").val(data.typeName);
                     }
                 });
             }
@@ -62,7 +62,7 @@ function search() {
         elem: '#table'
         ,url:'/shoes/type/allDetail?'+$("#searchForm").serialize()
         ,cols: [[
-            {field:'id',  title: 'ID', sort: true,align:'center',style:'display:none;'}
+            {field:'id', minWidth:'0%',width:'0%',type:'space',style:'display:none;'}
             ,{field:'typeName',  title: '分组名称',align:'center'}
             ,{fixed: 'right',title:'操作', width: 165, align:'center', toolbar: '#operation'}
         ]]
@@ -82,26 +82,56 @@ function add() {
         content: $('#addForm'), //这里content是一个DOM，注意：最好该元素要存放在body最外层，否则可能被其它的相对元素所影响
         success: function(layero){
             layer.setTop(layero); //重点2
-            $("#idAdd").val(data.id);
-            $("#nameAdd").val(data.typeName);
+            $("#idAdd").val("");
+            $("#nameAdd").val("");
         }
     });
 }
 function addBtn() {
-    $.post("/shoes/type/addSize", $("#AddForm").serialize(),function (data) {
+    $.post("/shoes/type/addType", $("#addForm").serialize(),function (data) {
         if(data.success){
             layer.msg("添加成功！", {icon: 1,time:2000});
+            table.render({
+                elem: '#table'
+                ,url:'/shoes/type/allDetail'
+                ,cols: [[
+                    {field:'id',minWidth:'0%',width:'0%',type:'space',style:'display:none;'}
+                    ,{field:'typeName',  title: '分组名称',align:'center'}
+                    ,{fixed: 'right',title:'操作', width: 165, align:'center', toolbar: '#operation'}
+                ]]
+                ,page: {
+                    limit:pageSize,
+                    limits:[pageSize]
+                }
+                ,skin:'line'
+                ,even:true
+            });
         }else{
             layer.msg("添加失败，请联系管理员", {icon: 5,time:2000});
         }
-        layer.close(AddGoodsLayer);
+        layer.close(editGoodsLayer);
     });
 }
 
 function editBtn() {
-    $.post("/shoes/type/updateSize", $("#editForm").serialize(),function (data) {
+    $.post("/shoes/type/updateType", $("#editForm").serialize(),function (data) {
         if(data.success){
             layer.msg("修改成功！", {icon: 1,time:2000});
+            table.render({
+                elem: '#table'
+                ,url:'/shoes/type/allDetail'
+                ,cols: [[
+                    {field:'id',minWidth:'0%',width:'0%',type:'space',style:'display:none;'}
+                    ,{field:'typeName',  title: '分组名称',align:'center'}
+                    ,{fixed: 'right',title:'操作', width: 165, align:'center', toolbar: '#operation'}
+                ]]
+                ,page: {
+                    limit:pageSize,
+                    limits:[pageSize]
+                }
+                ,skin:'line'
+                ,even:true
+            });
         }else{
             layer.msg("修改失败，请联系管理员", {icon: 5,time:2000});
         }

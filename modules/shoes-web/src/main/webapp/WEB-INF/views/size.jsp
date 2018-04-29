@@ -59,7 +59,7 @@
     </div>
     <label for="remarkEdit" class="col-sm-2 control-label">备注</label>
     <div class="col-sm-4">
-        <input type="text" class="form-control" id="remarkEdit" name="remark" placeholder=“请输入备注”>
+        <input type="text" class="form-control" id="remarkEdit" name="desc" placeholder=“请输入备注”>
     </div>
     </div>
     <div class="form-group">
@@ -77,7 +77,7 @@
     </div>
     <label for="remarkAdd" class="col-sm-2 control-label">备注</label>
     <div class="col-sm-4">
-        <input type="text" class="form-control" id="remarkAdd" name="reamrk" placeholder=“请输入名称”>
+        <input type="text" class="form-control" id="remarkAdd" name="desc" placeholder=“请输入名称”>
     </div>
     </div>
     <div class="form-group">

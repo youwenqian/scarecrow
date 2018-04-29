@@ -34,10 +34,10 @@
   <select id="queryById" parameterType="java.lang.Integer">
     select * from shoes_type where id=#{id,jdbcType=INTEGER}
   </select>
-  <select id="queryByName" parameterType="java.lang.String" resultMap="BaseResultMap">
+  <select id="queryByName"  resultMap="BaseResultMap">
     select * from shoes_type where 1=1
     <if test="name !=null">
-      type_name=#{name,jdbcType=VARCHAR}
+     and type_name=#{name,jdbcType=VARCHAR}
     </if>
   </select>
   <delete id="delById" parameterType="java.lang.Integer" >
@@ -47,7 +47,7 @@
     update shoes_type
     <set>
       <if test="typeName !=null">
-        type_name=#{typeName,jdbcType=VARCHAR},
+        type_name=#{typeName,jdbcType=VARCHAR}
       </if>
     </set>
     where id=#{id,jdbcType=INTEGER}
