@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.shoes.scarecrow.persistence.mappers.GoodExtendMapper">
+  <resultMap id="BaseResultMap" type="com.shoes.scarecrow.persistence.domain.GoodExtend">
+    <result column="extend_id" jdbcType="INTEGER" property="extendId" />
+    <result column="good_id" jdbcType="INTEGER" property="goodId" />
+    <result column="color_id" jdbcType="INTEGER" property="colorId" />
+    <result column="size_id" jdbcType="INTEGER" property="sizeId" />
+    <result column="remarks" jdbcType="VARCHAR" property="remarks" />
+  </resultMap>
+  <insert id="insert" parameterType="com.shoes.scarecrow.persistence.domain.GoodExtend">
+    insert into good_extend (extend_id, good_id, color_id, 
+      size_id, remarks)
+    values (#{extendId,jdbcType=INTEGER}, #{goodId,jdbcType=INTEGER}, #{colorId,jdbcType=INTEGER}, 
+      #{sizeId,jdbcType=INTEGER}, #{remarks,jdbcType=VARCHAR})
+  </insert>
+</mapper>

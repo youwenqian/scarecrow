@@ -130,7 +130,7 @@ public class GoodsController {
         } catch (IOException e) {
             e.printStackTrace();
         }
-        goodsService.saveGoods(goods,goodSize);
+        goodsService.saveGoods(goods);
         map.put("success",true);
         try {
             log.info(session.getAttribute("userName")+"离开添加商品信息方法,修改的商品信息="+objMapper.writeValueAsString(goods)+" goodsSize="+goodsSize);

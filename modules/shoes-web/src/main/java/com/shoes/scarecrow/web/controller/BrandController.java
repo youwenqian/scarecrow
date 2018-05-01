@@ -132,7 +132,9 @@ public class BrandController {
     @ResponseBody
     public Map deleteBrand(@PathVariable("id") Integer id, HttpSession session){
         log.info(session.getAttribute("userName")+"进入删除品牌方法，删除品牌id="+id);
-        int n = brandService.delBrand(id);
+        List<Integer> ids = new ArrayList<>();
+        ids.add(id);
+        int n = brandService.delBrand(ids, "");
         Map map = new HashMap<String,Object>();
         if(n==0){
             map.put("success",false);

@@ -30,7 +30,7 @@
                 <span class="x-red">*</span>用户名称
             </label>
             <div class="layui-input-inline">
-                <input type="text" id="L_userName" name="userName" required="" lay-verify="userName"
+                <input type="text" id="L_userName" name="userName" required="true" lay-verify="userName"
                        autocomplete="off" class="layui-input">
             </div>
             <div class="layui-form-mid layui-word-aux">
@@ -51,7 +51,7 @@
                 <span class="x-red">*</span>密码
             </label>
             <div class="layui-input-inline">
-                <input type="password" id="L_pass" name="password" required="" lay-verify="pass"
+                <input type="password" id="L_pass" name="password" required="true" lay-verify="pass"
                        autocomplete="off" class="layui-input">
             </div>
             <div class="layui-form-mid layui-word-aux">
@@ -63,7 +63,7 @@
                 <span class="x-red">*</span>确认密码
             </label>
             <div class="layui-input-inline">
-                <input type="password" id="L_repass" name="repass" required="" lay-verify="repass"
+                <input type="password" id="L_repass" name="repass" required="true" lay-verify="repass"
                        autocomplete="off" class="layui-input">
             </div>
         </div>

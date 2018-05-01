@@ -35,33 +35,33 @@ public class SizeController {
         log.info(session.getAttribute("userName")+"进入到分页获取品牌信息的方法，limit="+limit+",page="+page+",name="+sizeName);
         Map<String,Object> map = new HashMap<>();
         ObjectMapper mapper = new ObjectMapper();
-        SizeCondition condition = new SizeCondition();
-        condition.setSizeName(sizeName);
-        condition.setPage(null);
-        condition.setPageSize(null);
-        condition.setStartRow(null);
-        int total = sizeService.queryCountByCondition(condition);
-        condition.setPage(page);
-        condition.setPageSize(limit);
-        int start = (page-1)*limit;
-        condition.setStartRow(start);
-        List<Size> list = sizeService.queryByCondition(condition);
-//        list = new ArrayList<>();
-//        for(int i=0;i<50;i++){
-//            Brand brand = new Brand();
-//            brand.setId(i);
-//            brand.setName("品牌"+i);
-//            brand.setCreateUser("创建人"+i);
-//            brand.setCreateTime(new Date());
-//            brand.setUpdateUser("更新人"+i);
-//            brand.setUpdateTime(new Date());
-//            brand.setRemark("备注"+i);
-//            list.add(brand);
-//        }
-        map.put("code","0");
-        map.put("msg","");
-        map.put("count",total);
-        map.put("data",list);
+//        SizeCondition condition = new SizeCondition();
+//        condition.setSizeName(sizeName);
+//        condition.setPage(null);
+//        condition.setPageSize(null);
+//        condition.setStartRow(null);
+//        int total = sizeService.queryCountByCondition(condition);
+//        condition.setPage(page);
+//        condition.setPageSize(limit);
+//        int start = (page-1)*limit;
+//        condition.setStartRow(start);
+//        List<Size> list = sizeService.queryByCondition(condition);
+////        list = new ArrayList<>();
+////        for(int i=0;i<50;i++){
+////            Brand brand = new Brand();
+////            brand.setId(i);
+////            brand.setName("品牌"+i);
+////            brand.setCreateUser("创建人"+i);
+////            brand.setCreateTime(new Date());
+////            brand.setUpdateUser("更新人"+i);
+////            brand.setUpdateTime(new Date());
+////            brand.setRemark("备注"+i);
+////            list.add(brand);
+////        }
+//        map.put("code","0");
+//        map.put("msg","");
+//        map.put("count",total);
+//        map.put("data",list);
         try {
             log.info(session.getAttribute("userName")+"退出分页获取品牌信息的方法，result="+mapper.writeValueAsString(map));
         } catch (IOException e) {
@@ -88,7 +88,7 @@ public class SizeController {
         }catch(IOException e ){
             e.printStackTrace();
         }
-        int n = sizeService.saveSize(size);
+        int n = sizeService.save(size);
         Map map = new HashMap<String,Object>();
         if(n==0){
             map.put("success",false);
@@ -108,7 +108,7 @@ public class SizeController {
         }catch(IOException e ){
             e.printStackTrace();
         }
-        int n = sizeService.updateSize(size);
+        int n = sizeService.update(size);
         Map map = new HashMap<String,Object>();
         if(n==0){
             map.put("success",false);
@@ -122,8 +122,9 @@ public class SizeController {
     @ResponseBody
     public Map deleteBrand(@PathVariable("id") String id, HttpSession session){
         log.info(session.getAttribute("userName")+"进入删除品牌方法，删除品牌id="+id);
-        int ids = Integer.valueOf(id).intValue();
-        int n = sizeService.delSize(ids);
+        List<Integer> ids = new ArrayList<>();
+        ids.add( Integer.valueOf(id).intValue());
+        int n = sizeService.delById(ids);
         Map map = new HashMap<String,Object>();
         if(n==0){
             map.put("success",false);

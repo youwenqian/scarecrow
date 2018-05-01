@@ -23,7 +23,7 @@
                 <span class="x-red">*</span>名称
             </label>
             <div class="layui-input-inline">
-                <input type="text" id="L_name" name="name" required="" lay-verify="name"
+                <input type="text" id="L_name" name="name" required="true" lay-verify="name"
                        autocomplete="off" class="layui-input">
             </div>
             <div class="layui-form-mid layui-word-aux">
@@ -84,7 +84,7 @@
                             // 获得frame索引
                             var index = parent.layer.getFrameIndex(window.name);
                             parent.layer.close(index);
-                            location.href='${root}color/colorView';
+                            location.href='${root}color/colorList';
                         });
                     }else{
                         layer.alert("增加失败", {icon: 6},function () {

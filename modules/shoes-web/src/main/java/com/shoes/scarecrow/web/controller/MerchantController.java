@@ -38,26 +38,26 @@ public class MerchantController {
     public Map getDetail(int page, int limit, UserCondition userCondition, HttpSession session) {
         log.info(session.getAttribute("userName") + "进入到分页获取商家信息的方法，limit=" + limit + ",page=" + page);
         Map<String,Object> map = new HashMap<>();
-        userCondition.setPage(null);
-        userCondition.setStartRow(null);
-        userCondition.setPageSize(null);
-        int total = userService.queryCountByCondition(userCondition);
-        userCondition.setPage(page);
-        userCondition.setPageSize(limit);
-        int start = (page-1)*limit;
-        userCondition.setStartRow(start);
-        List<User> list = userService.queryByCondition(userCondition);
-        ObjectMapper mapper = new ObjectMapper();
-        map.put("code","0");
-        map.put("msg","");
-        map.put("count",50);
-        map.put("count",total);
-        map.put("data",list);
-        try {
-            log.info(session.getAttribute("userName")+"退出分页获取商家信息的方法，result="+mapper.writeValueAsString(map));
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
+//        userCondition.setPage(null);
+//        userCondition.setStartRow(null);
+//        userCondition.setPageSize(null);
+//        int total = userService.queryCountByCondition(userCondition);
+//        userCondition.setPage(page);
+//        userCondition.setPageSize(limit);
+//        int start = (page-1)*limit;
+//        userCondition.setStartRow(start);
+//        List<User> list = userService.queryByCondition(userCondition);
+//        ObjectMapper mapper = new ObjectMapper();
+//        map.put("code","0");
+//        map.put("msg","");
+//        map.put("count",50);
+//        map.put("count",total);
+//        map.put("data",list);
+//        try {
+//            log.info(session.getAttribute("userName")+"退出分页获取商家信息的方法，result="+mapper.writeValueAsString(map));
+//        } catch (IOException e) {
+//            e.printStackTrace();
+//        }
         return map;
     }
     @RequestMapping("/merchant/deleteUser/{id}")

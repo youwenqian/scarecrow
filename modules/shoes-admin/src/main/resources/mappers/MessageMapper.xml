@@ -1,0 +1,158 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.shoes.scarecrow.persistence.mappers.MessageMapper">
+  <resultMap id="BaseResultMap" type="com.shoes.scarecrow.persistence.domain.Message">
+    <id column="id" jdbcType="INTEGER" property="id" />
+    <result column="title" jdbcType="VARCHAR" property="title" />
+    <result column="auther" jdbcType="VARCHAR" property="auther" />
+    <result column="keyword" jdbcType="VARCHAR" property="keyword" />
+    <result column="summary" jdbcType="VARCHAR" property="summary" />
+    <result column="picture" jdbcType="VARCHAR" property="picture" />
+    <result column="status" jdbcType="INTEGER" property="status" />
+    <result column="remark" jdbcType="VARCHAR" property="remark" />
+    <result column="create_time" jdbcType="TIMESTAMP" property="createTime" />
+    <result column="update_time" jdbcType="TIMESTAMP" property="updateTime" />
+    <result column="create_user" jdbcType="VARCHAR" property="createUser" />
+    <result column="update_user" jdbcType="VARCHAR" property="updateUser" />
+  </resultMap>
+  <resultMap extends="BaseResultMap" id="ResultMapWithBLOBs" type="com.shoes.scarecrow.persistence.domain.Message">
+    <result column="content" jdbcType="LONGVARCHAR" property="content" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    id,title, auther, keyword, summary, picture, status, remark, create_time, update_time,
+    create_user, update_user
+  </sql>
+  <sql id="Blob_Column_List">
+    content
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from message
+    where id = #{id,jdbcType=INTEGER}
+  </select>
+  <select id="selectByMap" parameterType="java.util.Map" resultMap="BaseResultMap">
+    select
+    <include refid="Base_Column_List" />
+    ,
+    <include refid="Blob_Column_List" />
+    from message
+    where 1=1
+    <if test="keyword != null">
+      and title concat(concat('%',#{title}),'%')
+    </if>
+    <if test="keyword != null">
+      and keyword concat(concat('%',#{keyword}),'%')
+    </if>
+    <if test="status != null">
+      and status = #{status}
+    </if>
+  </select>
+
+  <select id="selectCountByMap" parameterType="java.util.Map" resultType="int">
+    select
+    count(1)
+    from message
+    where 1=1
+    <if test="keyword != null">
+      and keyword concat(concat('%',#{keyword}),'%')
+    </if>
+    <if test="keyword != null">
+      and title concat(concat('%',#{title}),'%')
+    </if>
+    <if test="status != null">
+      and status = #{status}
+    </if>
+  </select>
+
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+    delete from message
+    where id = #{id,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="com.shoes.scarecrow.persistence.domain.Message">
+    insert into message (id, title,auther, keyword,
+      summary, picture, status, 
+      remark, create_time, update_time, 
+      create_user, update_user, content
+      )
+    values (#{id,jdbcType=INTEGER},#{title,jdbcType=VARCHAR}, #{auther,jdbcType=VARCHAR}, #{keyword,jdbcType=VARCHAR},
+      #{summary,jdbcType=VARCHAR}, #{picture,jdbcType=VARCHAR}, #{status,jdbcType=INTEGER}, 
+      #{remark,jdbcType=VARCHAR}, #{createTime,jdbcType=TIMESTAMP}, #{updateTime,jdbcType=TIMESTAMP}, 
+      #{createUser,jdbcType=VARCHAR}, #{updateUser,jdbcType=VARCHAR}, #{content,jdbcType=LONGVARCHAR}
+      )
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.shoes.scarecrow.persistence.domain.Message">
+    update message
+    <set>
+      <if test="title != null">
+        auther = #{title,jdbcType=VARCHAR},
+      </if>
+      <if test="auther != null">
+        auther = #{auther,jdbcType=VARCHAR},
+      </if>
+      <if test="keyword != null">
+        keyword = #{keyword,jdbcType=VARCHAR},
+      </if>
+      <if test="summary != null">
+        summary = #{summary,jdbcType=VARCHAR},
+      </if>
+      <if test="picture != null">
+        picture = #{picture,jdbcType=VARCHAR},
+      </if>
+      <if test="status != null">
+        status = #{status,jdbcType=INTEGER},
+      </if>
+      <if test="remark != null">
+        remark = #{remark,jdbcType=VARCHAR},
+      </if>
+      <if test="createTime != null">
+        create_time = #{createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updateTime != null">
+        update_time = #{updateTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="createUser != null">
+        create_user = #{createUser,jdbcType=VARCHAR},
+      </if>
+      <if test="updateUser != null">
+        update_user = #{updateUser,jdbcType=VARCHAR},
+      </if>
+      <if test="content != null">
+        content = #{content,jdbcType=LONGVARCHAR},
+      </if>
+    </set>
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKeyWithBLOBs" parameterType="com.shoes.scarecrow.persistence.domain.Message">
+    update message
+    set
+      title = #{title,jdbcType=VARCHAR},
+      auther = #{auther,jdbcType=VARCHAR},
+      keyword = #{keyword,jdbcType=VARCHAR},
+      summary = #{summary,jdbcType=VARCHAR},
+      picture = #{picture,jdbcType=VARCHAR},
+      status = #{status,jdbcType=INTEGER},
+      remark = #{remark,jdbcType=VARCHAR},
+      create_time = #{createTime,jdbcType=TIMESTAMP},
+      update_time = #{updateTime,jdbcType=TIMESTAMP},
+      create_user = #{createUser,jdbcType=VARCHAR},
+      update_user = #{updateUser,jdbcType=VARCHAR},
+      content = #{content,jdbcType=LONGVARCHAR}
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.shoes.scarecrow.persistence.domain.Message">
+    update message
+    set title = #{title,jdbcType=VARCHAR},
+      auther = #{auther,jdbcType=VARCHAR},
+      keyword = #{keyword,jdbcType=VARCHAR},
+      summary = #{summary,jdbcType=VARCHAR},
+      picture = #{picture,jdbcType=VARCHAR},
+      status = #{status,jdbcType=INTEGER},
+      remark = #{remark,jdbcType=VARCHAR},
+      create_time = #{createTime,jdbcType=TIMESTAMP},
+      update_time = #{updateTime,jdbcType=TIMESTAMP},
+      create_user = #{createUser,jdbcType=VARCHAR},
+      update_user = #{updateUser,jdbcType=VARCHAR}
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+</mapper>

@@ -81,7 +81,7 @@
                     <i class="iconfont nav_right">&#xe697;</i>
                 </a>
                 <ul class="sub-menu">
-                    <li>
+                    <li style="display:none;">
                         <a _href="${root}/goods/goodsView">
                             <i class="iconfont">&#xe6a7;</i>
                             <cite>商品管理</cite>
@@ -112,7 +112,7 @@
                         </a>
                     </li>
                     <li>
-                        <a _href="${root}/user/userView">
+                        <a _href="${root}/message/messageList">
                             <i class="iconfont">&#xe6a7;</i>
                             <cite>广告管理</cite>
                         </a>
